@@ -2,47 +2,66 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Fucking Homepage Demo</title>
+  <title>Football Fucking Homepage</title>
   <style>
-    body { font-family: Arial, Helvetica, sans-serif; background:#eee; color:#222; }
-    h1 { font-size:2rem; margin-top:2rem; margin-bottom:0; }
-    h2 { font-size:1.5rem; margin:0.5rem 0 1rem 0; }
-    h4 { margin-top:2rem; }
-    .category { margin-bottom:1.5rem; }
-    #date { margin-top:2rem; }
+    body { font-family: Arial, Helvetica, sans-serif; background:#eee; color:#1e2227; margin:0; padding:0;}
+    h1 { font-size:2rem; margin-top:2rem; margin-bottom:0.5rem; text-align:center; }
+    h2 { font-size:1.2rem; font-weight:normal; text-align:center; margin-top:0; margin-bottom:2rem;}
+    h4 { margin-top:2.5rem; margin-bottom:0.3rem; letter-spacing:0.04em; }
+    .category { margin: 0 auto 2.5rem auto; max-width: 620px; background: #fff; box-shadow:0 4px 16px 0 rgba(0,0,0,0.03); border-radius:8px; padding: 18px 30px;}
+    .label { color: #b17d16; font-size:0.94em; }
+    a { color: #1771d6; text-decoration:underline; }
+    @media (max-width: 700px) {
+      .category { max-width: 98vw; padding: 12px 2vw; }
+    }
   </style>
 </head>
 <body>
   <h1 id="date"></h1>
   <h2 id="fucking-day"></h2>
 
-  <div>
-    <h4>FOOTBALL LEGEND OF THE DAY:</h4>
+  <div class="category">
+    <div class="label">FOOTBALL LEGEND OF THE DAY:</div>
     <div id="legend"></div>
   </div>
   <div class="category">
-    <h4>EDUCATE YOUR IGNORANT ASS:</h4>
-    <div id="educate"></div>
+    <div class="label">STADIUM OF THE DAY:</div>
+    <div id="stadium"></div>
   </div>
   <div class="category">
-    <h4>FUCKING MIND-BLOWING BOOK OF THE DAY:</h4>
-    <div id="book"></div>
+    <div class="label">DAILY TRIVIA QUESTION:</div>
+    <div id="trivia"></div>
   </div>
   <div class="category">
-    <h4>USEFUL SHIT OF THE GODDAMN DAY:</h4>
-    <div id="useful"></div>
+    <div class="label">LIFE-CHANGING GEAR OF THE DAY:</div>
+    <div id="gear"></div>
   </div>
   <div class="category">
-    <h4>WEBSITE OF THE FUCKING DAY:</h4>
-    <div id="website"></div>
+    <div class="label">STUFF YOU DIDN'T KNOW YOU NEED:</div>
+    <div id="stuff"></div>
   </div>
   <div class="category">
-    <h4>AWESOME-AS-SHIT VIDEO OF THE DAY:</h4>
-    <div id="video"></div>
+    <div class="label">FAN GEAR OF THE DAY:</div>
+    <div id="fangear"></div>
   </div>
 
   <script>
-    // Data arrays for each section
+    // --- DETERMINISTIC PICKER ---
+    function pickDailyRandom(arr, category) {
+      if (arr.length === 0) return null;
+      const today = new Date();
+      const dateStr = today.getFullYear() + String(today.getMonth()+1).padStart(2, '0') + String(today.getDate()).padStart(2, '0');
+      let hash = 0;
+      const seed = category + dateStr;
+      for (let i = 0; i < seed.length; i++) {
+        hash = (hash << 5) - hash + seed.charCodeAt(i);
+        hash |= 0;
+      }
+      const idx = Math.abs(hash) % arr.length;
+      return arr[idx];
+    }
+
+    // ==== 1. FOOTBALL LEGENDS ====
     const footballLegends = [
       { name: "Pelé", url: "https://en.wikipedia.org/wiki/Pel%C3%A9" },
       { name: "Diego Maradona", url: "https://en.wikipedia.org/wiki/Diego_Maradona" },
@@ -71,7 +90,7 @@
       { name: "Samuel Eto'o", url: "https://en.wikipedia.org/wiki/Samuel_Eto%27o" },
       { name: "Roberto Carlos", url: "https://en.wikipedia.org/wiki/Roberto_Carlos_(footballer,_born_1973)" },
       { name: "Luis Suárez", url: "https://en.wikipedia.org/wiki/Luis_Su%C3%A1rez" },
-      { name: "Eric Cantona", url: "https://en.wikipedia.org/wiki/Eric_Cantona" }, // legend & madman
+      { name: "Eric Cantona", url: "https://en.wikipedia.org/wiki/Eric_Cantona" },
       { name: "Gary Lineker", url: "https://en.wikipedia.org/wiki/Gary_Lineker" },
       { name: "Michael Owen", url: "https://en.wikipedia.org/wiki/Michael_Owen" },
       { name: "Steven Gerrard", url: "https://en.wikipedia.org/wiki/Steven_Gerrard" },
@@ -86,86 +105,175 @@
       { name: "Arjen Robben", url: "https://en.wikipedia.org/wiki/Arjen_Robben" },
       { name: "Clarence Seedorf", url: "https://en.wikipedia.org/wiki/Clarence_Seedorf" },
       { name: "Fernando Torres", url: "https://en.wikipedia.org/wiki/Fernando_Torres" },
-      { name: "Mario Balotelli", url: "https://en.wikipedia.org/wiki/Mario_Balotelli" }, // legend for chaos
+      { name: "Mario Balotelli", url: "https://en.wikipedia.org/wiki/Mario_Balotelli" },
       { name: "Carles Puyol", url: "https://en.wikipedia.org/wiki/Carles_Puyol" },
       { name: "Oliver Kahn", url: "https://en.wikipedia.org/wiki/Oliver_Kahn" },
       { name: "Patrice Evra", url: "https://en.wikipedia.org/wiki/Patrice_Evra" },
       { name: "Socrates", url: "https://en.wikipedia.org/wiki/S%C3%B3crates" },
       { name: "Fabio Cannavaro", url: "https://en.wikipedia.org/wiki/Fabio_Cannavaro" },
-      { name: "Carlos Valderrama", url: "https://en.wikipedia.org/wiki/Carlos_Valderrama" }, // the hair!
-      { name: "Harold Schumacher", url: "https://en.wikipedia.org/wiki/Harald_Schumacher" } // "incident" vs. France
+      { name: "Carlos Valderrama", url: "https://en.wikipedia.org/wiki/Carlos_Valderrama" },
+      { name: "Harald Schumacher", url: "https://en.wikipedia.org/wiki/Harald_Schumacher" }
     ];
 
-    const educate = [
-      { title: "How to enjoy shit.", url: "https://www.wikihow.com/Enjoy-Life" },
-      { title: "How the Internet Works", url: "https://web.dev/how-does-the-internet-work/" },
-      { title: "Why is the sky blue?", url: "https://spaceplace.nasa.gov/blue-sky/en/" }
+    // ==== 2. STADIUMS ====
+    // Add more stadiums as you wish!
+    const stadiums = [
+      { name: "Camp Nou (Barcelona)", url: "https://en.wikipedia.org/wiki/Camp_Nou" },
+      { name: "Wembley Stadium (London)", url: "https://en.wikipedia.org/wiki/Wembley_Stadium" },
+      { name: "Maracanã (Rio de Janeiro)", url: "https://en.wikipedia.org/wiki/Maracan%C3%A3_Stadium" },
+      { name: "San Siro (Milan)", url: "https://en.wikipedia.org/wiki/San_Siro" },
+      { name: "Santiago Bernabéu (Madrid)", url: "https://en.wikipedia.org/wiki/Santiago_Bernab%C3%A9u_Stadium" },
+      { name: "Allianz Arena (Munich)", url: "https://en.wikipedia.org/wiki/Allianz_Arena" },
+      { name: "Old Trafford (Manchester)", url: "https://en.wikipedia.org/wiki/Old_Trafford" },
+      { name: "Signal Iduna Park (Dortmund)", url: "https://en.wikipedia.org/wiki/Westfalenstadion" },
+      { name: "Anfield (Liverpool)", url: "https://en.wikipedia.org/wiki/Anfield" },
+      { name: "La Bombonera (Buenos Aires)", url: "https://en.wikipedia.org/wiki/La_Bombonera" }
     ];
 
-    const mindBlowingBooks = [
-      { title: "A Beginner’s Guide to Oil Painting.", url: "https://www.goodreads.com/book/show/271656.A_Beginner_s_Guide_To_Oil_Painting" },
-      { title: "The Subtle Art of Not Giving a F*ck", url: "https://amzn.to/fuck-book" },
-      { title: "Sapiens: A Brief History of Humankind", url: "https://amzn.to/2ybXbF8" }
-    ];
-
-    const usefulShit = [
-      { title: "A Fucking Workspace.", url: "https://amazon.com/workspace" },
-      { title: "Cable Organizer", url: "https://amazon.com/cable-org" },
-      { title: "Noise-Cancelling Headphones", url: "https://amazon.com/noise-cancelling" }
-    ];
-
-    const websites = [
-      { title: "Search real content by real motherfuckers.", url: "https://are.na" },
-      { title: "The Useless Web", url: "https://theuselessweb.com" },
-      { title: "Little Alchemy 2", url: "https://littlealchemy2.com" }
-    ];
-
-    const awesomeVideos = [
-      { title: "A brief-ass history of coffee.", url: "https://www.youtube.com/watch?v=4EoIxtuJVKc" },
-      { title: "Kurzgesagt: Wormholes Explained", url: "https://youtu.be/e-P5IFTqB98" },
-      { title: "Primitive Technology: Tiled Roof Hut", url: "https://www.youtube.com/watch?v=47M5dNBvuzg" }
-    ];
-
-    function pickDailyRandom(arr, category) {
-      const today = new Date();
-      const dateStr = today.getFullYear() + String(today.getMonth()+1).padStart(2, '0') + String(today.getDate()).padStart(2, '0');
-      let hash = 0;
-      const seed = category + dateStr;
-      for (let i = 0; i < seed.length; i++) {
-        hash = (hash << 5) - hash + seed.charCodeAt(i);
-        hash |= 0;
+    // ==== 3. TRIVIA QUESTIONS ====
+    // Trivial Qs with answers
+    const triviaQuestions = [
+      {
+        q: "Who won the 2010 FIFA World Cup?",
+        a: "Spain"
+      },
+      {
+        q: "Which player is known as 'The Divine Ponytail'?",
+        a: "Roberto Baggio"
+      },
+      {
+        q: "Which club has won the most UEFA Champions League titles?",
+        a: "Real Madrid"
+      },
+      {
+        q: "Which country hosted the first FIFA World Cup?",
+        a: "Uruguay"
+      },
+      {
+        q: "Who is the all-time top scorer in the Premier League?",
+        a: "Alan Shearer"
+      },
+      {
+        q: "Name the only player to win the Ballon d'Or, World Cup, and Champions League.",
+        a: "Sir Bobby Charlton"
+      },
+      {
+        q: "Who scored the 'Hand of God' goal?",
+        a: "Diego Maradona"
+      },
+      {
+        q: "Which African nation reached the World Cup quarter finals in 2002?",
+        a: "Senegal"
+      },
+      {
+        q: "Who is known as 'El Fenómeno'?",
+        a: "Ronaldo Nazário"
+      },
+      {
+        q: "What's the maximum number of substitutions per team in a FIFA World Cup knockout match (since 2018)?",
+        a: "Five"
       }
-      const idx = Math.abs(hash) % arr.length;
-      return arr[idx];
-    }
+    ];
 
+    // ==== 4. GEAR OF THE DAY (Affiliate examples) ====
+    const lifeChangingGear = [
+      {
+        title: "Adidas Uniforia Match Ball",
+        url: "https://www.amazon.com/dp/B07ZQPYJ5Q/?tag=youraffiliatetag" 
+      },
+      {
+        title: "Nike Mercurial Superfly 9",
+        url: "https://www.amazon.com/dp/B0B3TZD66X/?tag=youraffiliatetag" 
+      },
+      {
+        title: "SKLZ Agility Ladder",
+        url: "https://www.amazon.com/dp/B000P7PVW8/?tag=youraffiliatetag" 
+      }
+    ];
+
+    // ==== 5. STUFF YOU DIDN'T KNOW YOU NEED (Funny/affiliate mix) ====
+    const stuffYouDidntKnow = [
+      {
+        title: "Quick-Dry Football Socks",
+        url: "https://www.amazon.com/dp/B013Q158UM/?tag=youraffiliatetag" 
+      },
+      {
+        title: "Portable Pop-Up Soccer Goal",
+        url: "https://www.amazon.com/dp/B00Z8UB6IW/?tag=youraffiliatetag" 
+      },
+      {
+        title: "Football Ice Cube Tray (For Serious Fans)",
+        url: "https://www.amazon.com/dp/B084Z9ZQXM/?tag=youraffiliatetag"
+      }
+    ];
+
+    // ==== 6. FAN GEAR OF THE DAY ====
+    const fanGear = [
+      {
+        title: "Manchester United Home Jersey",
+        url: "https://www.amazon.com/dp/B0C5G1X8FP/?tag=youraffiliatetag"
+      },
+      {
+        title: "Liverpool FC Scarf",
+        url: "https://www.amazon.com/dp/B01LYLC61E/?tag=youraffiliatetag"
+      },
+      {
+        title: "FC Barcelona Cap",
+        url: "https://www.amazon.com/dp/B01GZZ8SXE/?tag=youraffiliatetag"
+      }
+    ];
+
+    // ==== RENDER ALL SECTIONS ====
     document.addEventListener("DOMContentLoaded", function() {
       // Date and Day
       const today = new Date();
-      const days = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+      const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
       document.getElementById("date").textContent =
         today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
       document.getElementById("fucking-day").textContent = `IT'S FUCKING ${days[today.getDay()]}.`;
 
-      document.getElementById('words').textContent = pickDailyRandom(wordsOfWisdom, 'words');
-      const e = pickDailyRandom(educate, 'educate');
-      document.getElementById('educate').innerHTML = `${e.title} <a href="${e.url}" target="_blank">more&gt;&gt;</a>`;
+      // Legends
+      const legend = pickDailyRandom(footballLegends, 'legend');
+      document.getElementById('legend').innerHTML = legend
+        ? `<a href="${legend.url}" target="_blank">${legend.name}</a>`
+        : "(add more legends!)";
 
-      const b = pickDailyRandom(mindBlowingBooks, 'book');
-      document.getElementById('book').innerHTML = `${b.title} <a href="${b.url}" target="_blank">more&gt;&gt;</a>`;
+      // Stadiums
+      const stadium = pickDailyRandom(stadiums, 'stadium');
+      document.getElementById('stadium').innerHTML = stadium
+        ? `<a href="${stadium.url}" target="_blank">${stadium.name}</a>`
+        : "(add more stadiums!)";
 
-      const u = pickDailyRandom(usefulShit, 'useful');
-      document.getElementById('useful').innerHTML = `${u.title} <a href="${u.url}" target="_blank">more&gt;&gt;</a>`;
+      // Trivia with reveal button
+      const triviaObj = pickDailyRandom(triviaQuestions, 'trivia');
+      if (triviaObj) {
+        const triviaDiv = document.getElementById('trivia');
+        triviaDiv.innerHTML = `${triviaObj.q} <button id="showTrivia">Show Answer</button> <span id="triviaA" style="display:none; margin-left:12px; font-weight:bold; color:#008300">${triviaObj.a}</span>`;
+        document.getElementById('showTrivia').onclick = () => {
+          document.getElementById('triviaA').style.display = "inline";
+          document.getElementById('showTrivia').disabled = true;
+        };
+      } else {
+        document.getElementById('trivia').textContent = "(add more trivia!)";
+      }
 
-      const w = pickDailyRandom(websites, 'website');
-      document.getElementById('website').innerHTML = `${w.title} <a href="${w.url}" target="_blank">more&gt;&gt;</a>`;
+      // Life-Changing Gear (affiliate)
+      const gear = pickDailyRandom(lifeChangingGear, 'gear');
+      document.getElementById('gear').innerHTML = gear
+        ? `${gear.title} <a href="${gear.url}" target="_blank">more&gt;&gt;</a>`
+        : "(add more gear!)";
 
-      const v = pickDailyRandom(awesomeVideos, 'video');
-      document.getElementById('video').innerHTML = `${v.title} <a href="${v.url}" target="_blank">more&gt;&gt;</a>`;
+      // Stuff you didn't know you need
+      const stuff = pickDailyRandom(stuffYouDidntKnow, 'stuff');
+      document.getElementById('stuff').innerHTML = stuff
+        ? `${stuff.title} <a href="${stuff.url}" target="_blank">more&gt;&gt;</a>`
+        : "(add more stuff!)";
 
-      const legend = pickDailyRandom(footballLegends, 'legends'); // Football Legends
-      document.getElementById('legend').innerHTML = `<a href="${legend.url}" target="_blank">${legend.name}</a>`;
-      
+      // Fan Gear
+      const fan = pickDailyRandom(fanGear, 'fan');
+      document.getElementById('fangear').innerHTML = fan
+        ? `${fan.title} <a href="${fan.url}" target="_blank">more&gt;&gt;</a>`
+        : "(add more fan gear!)";
     });
   </script>
 </body>
