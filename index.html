@@ -1,553 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>The Beautiful Game Daily</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background: #fafbfc;
-      margin: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      color: #16211e;
-    }
-    /* Header */
-    .header {
-      background: #fff;
-      border-bottom: 1.5px solid #f0f0f0;
-      padding: 0.75rem 0 0.75rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-sizing: border-box;
-      width: 100%;
-    }
-    .site-title {
-      font-family: 'Playfair Display', Times, serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-left: 32px;
-      letter-spacing: 0.02em;
-    }
-    .icon-trophy {
-      margin-right: 32px;
-      color: #15b661;
-      font-size: 1.8rem;
-    }
-    .main-date {
-      letter-spacing: 0.15em;
-      color: #677279;
-      font-size: 0.98rem;
-      text-align: center;
-      margin-top: 36px;
-      margin-bottom: 5px;
-    }
-    .day-name {
-      font-family: 'Playfair Display', Times, serif;
-      font-size: 2.3rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
+<!-- Include fonts in your <head> -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-    /* GRID SECTIONS */
-    .main-sections {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      max-width: 1150px;
-      margin: 0 auto;
-    }
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 3px 16px 1px rgba(36,48,73,0.12);
-      overflow: hidden;
-      flex: 1 1 350px;
-      min-width: 340px;
-      max-width: 520px;
-      display: flex;
-      flex-direction: column;
-    }
-    .card-img {
-      width: 100%;
-      aspect-ratio: 16/8;
-      object-fit: cover;
-      background: #e4e7ec;
-    }
-    .card-content {
-      padding: 1.2rem 1.5rem 1.5rem 1.5rem;
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-    }
-    .card-label {
-      font-size: 0.92em;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: #fff;
-      background: #191919cc;
-      display: inline-block;
-      border-radius: 2.3px;
-      position: absolute;
-      top: 18px;
-      left: 18px;
-      padding: 4.5px 8px;
-      z-index: 2;
-    }
-    .card-label.green { background: #14a064d2;}
+<style>
+.main-sections {
+  display: flex;
+  gap: 2rem;
+  max-width: 1150px;
+  margin: 0 auto;
+  justify-content: center;
+}
 
-    /* Cards with overlay labels */
-    .card-img-wrap {
-      position: relative;
-      width: 100%;
-    }
+.card {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 16px 0 rgba(36,48,73,0.09);
+  overflow: hidden;
+  flex: 1 1 500px;
+  min-width: 380px;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid #efefef;
+}
 
-    /* Card content styles */
-    .card-title {
-      font-family: 'Playfair Display', Times, serif;
-      font-size: 1.28rem;
-      font-weight: 700;
-      margin: 0.25em 0 0 0;
-      letter-spacing: -0.01em;
-    }
-    .card-desc {
-      color: #454f56;
-      font-size: 1.04em;
-      margin: 0.7em 0 0.85em 0;
-      line-height: 1.45;
-    }
-    .card-info {
-      color: #909ea7;
-      font-size: 0.98em;
-      margin-top: 0.6em;
-    }
-    .card-highlights {
-      color: #1b8030;
-      font-size: 0.96em;
-      font-weight: 600;
-      margin-top: 0.68em;
-      text-decoration: none;
-    }
+.card-img-wrap {
+  position: relative;
+  width: 100%;
+}
 
-    /* Trivia Banner */
-    .trivia-banner {
-      background: #14a064;
-      color: #fff;
-      margin: 2.5rem 0 2.5rem 0;
-      padding: 2.6rem 2vw 2.6rem 2vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 11px;
-      max-width: 930px;
-      box-shadow: 0 6px 22px 1px rgba(20,88,55,0.09);
-      margin-left: auto; margin-right: auto;
-    }
-    .trivia-label {
-      font-size: 0.98em;
-      font-weight: 600;
-      letter-spacing: 0.11em;
-      margin-bottom: 1.1em;
-      opacity: 0.93;
-    }
-    .trivia-q {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.48rem;
-      margin-bottom: 2.2rem;
-      text-align: center;
-      font-weight: 700;
-      line-height: 1.19;
-    }
-    .trivia-btn {
-      display: inline-block;
-      font-size: 1em;
-      background: #fff;
-      color: #14a064;
-      border-radius: 8px;
-      padding: 0.8em 2.14em;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 1.5px 6px 1px rgba(20,160,104,0.08);
-      margin-top: 0.2em;
-      transition: background .15s, color .15s;
-    }
-    .trivia-btn:active { background: #d1f5df; }
-    .trivia-answer {
-      margin-top: 1.6em;
-      font-size: 1.15em;
-      color: #fff;
-      font-weight: bold;
-    }
+.card-img {
+  width: 100%;
+  aspect-ratio: 16/8;
+  object-fit: cover;
+  background: #e4e7ec;
+  display: block;
+}
 
-    /* Picks Section */
-    .picks-section {
-      max-width: 1120px;
-      margin: 0 auto 2rem auto;
-    }
-    .picks-title {
-      font-family: 'Playfair Display', Times, serif;
-      font-size: 2.06rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 0.06em;
-    }
-    .picks-subtitle {
-      text-align: center;
-      color: #7f8893;
-      font-size: 1.06em;
-      margin-bottom: 2.1em;
-    }
-    .picks-cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.2rem;
-      justify-content: center;
-    }
-    .pick-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 3px 16px 1px rgba(36,48,73,0.12);
-      overflow: hidden;
-      flex: 1 1 300px;
-      min-width: 290px;
-      max-width: 350px;
-      display: flex;
-      flex-direction: column;
-    }
-    .pick-img-wrap {
-      position: relative;
-      width: 100%;
-    }
-    .pick-label {
-      font-size: 0.89em;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #fff;
-      background: #000b;
-      display: inline-block;
-      border-radius: 3.2px;
-      position: absolute;
-      top: 14px;
-      left: 12px;
-      padding: 4px 10px;
-      z-index: 2;
-    }
-    .pick-label.green { background: #1baa63d2;}
-    .pick-label.blue { background: #205ab9de;}
-    .pick-label.gray { background: #282c34cc;}
+.card-label {
+  font-size: 0.99em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: #191919;
+  padding: 5px 13px;
+  border-radius: 3px;
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.09);
+}
 
-    .pick-img {
-      width: 100%;
-      aspect-ratio: 16/8;
-      object-fit: cover;
-      background: #e4e7ec;
-    }
-    .pick-content {
-      padding: 1.09rem 1.2rem 1.5rem 1.2rem;
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-    }
-    .pick-title {
-      font-family: 'Playfair Display', Times, serif;
-      font-size: 1.08rem;
-      font-weight: 700;
-      margin: 0.15em 0 0 0;
-      letter-spacing: -0.01em;
-    }
-    .pick-desc {
-      color: #454f56;
-      font-size: 0.99em;
-      margin: 0.7em 0 1em 0;
-      line-height: 1.38;
-    }
-    .pick-btn {
-      display: inline-block;
-      font-size: 0.98em;
-      background: #111;
-      color: #fff;
-      border-radius: 7px;
-      padding: 0.70em 1.15em;
-      font-weight: 600;
-      text-decoration: none;
-      text-align: center;
-      border: none;
-      margin-top: auto;
-      cursor: pointer;
-      letter-spacing: 0.07em;
-      transition: background .15s, color .15s;
-    }
-    .pick-btn:hover, .pick-btn:active { background: #206728; }
+.card-label.green {
+  background: #14a064;
+}
 
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .main-sections { flex-direction: column; gap: 2rem; }
-      .card, .pick-card { max-width: 97vw; min-width: 0; }
-      .trivia-banner { max-width: 98vw;}
-      .picks-section { max-width: 99vw;}
-    }
-    @media (max-width: 700px) {
-      .main-sections { flex-direction: column; gap: 2rem; }
-      .day-name { font-size: 1.42rem;}
-      .main-date { font-size: 0.87rem;}
-      .picks-title { font-size: 1.28rem; }
-    }
-  </style>
-</head>
-<body>
-  <!-- Header -->
-  <header class="header">
-    <div class="site-title">The Beautiful Game Daily</div>
-    <div class="icon-trophy" title="Football Daily">
-      <!-- Simple Trophy SVG -->
-      <svg fill="currentColor" width="28" height="28" viewBox="0 0 24 24"><path d="M17 14c2.607 0 6-1.745 6-7v-2a1 1 0 0 0-1-1h-3V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v2H2a1 1 0 0 0-1 1v2c0 5.255 3.393 7 6 7a5.98 5.98 0 0 0 4 1.528V19a3 3 0 0 0 2 2.83V22a1 1 0 1 0 2 0v-.17A3 3 0 0 0 15 19v-3.472A5.98 5.98 0 0 0 19 14zm2-7c0 3.899-2.18 5-4 5s-4-1.101-4-5V4h8zm-14 0V4h8v3c0 3.899-2.18 5-4 5S3 10.899 3 7zm7 13.17V19V17a1 1 0 1 1 2 0v2.17a1.001 1.001 0 0 1-2 0z"/></svg>
+/* Card content and typography styles */
+.card-content {
+  padding: 25px 32px 34px 32px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin: 0.22em 0 0.31em 0;
+  letter-spacing: -0.01em;
+  color: #18191b;
+}
+
+.card-desc {
+  color: #555e62;
+  font-size: 1.13em;
+  margin-bottom: 2.3em;
+  line-height: 1.55;
+}
+
+.card-info-top {
+  color: #159c60;
+  font-size: 1em;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.card-subtle {
+  color: #7f8893;
+  font-size: 0.97em;
+  font-weight: 500;
+  margin-bottom: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card-highlights {
+  color: #18191b;
+  font-size: 1.07em;
+  font-weight: 600;
+  margin-top: 3px;
+  line-height: 1.45;
+}
+
+.card-info {
+  color: #151f29;
+  font-size: 1.06em;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.card-hr {
+  border: none;
+  border-top: 1px solid #e6e7ef;
+  margin: 0.8em 0 1.1em 0;
+}
+</style>
+
+<section class="main-sections">
+  <!-- Legend of the Day -->
+  <div class="card">
+    <div class="card-img-wrap">
+      <div class="card-label">Legend of the Day</div>
+      <img class="card-img" src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80" alt="Johan Cruyff">
     </div>
-  </header>
-  <!-- Date & Day -->
-  <div class="main-date" id="mainDate"></div>
-  <div class="day-name" id="dayName"></div>
-  <!-- Top Section: Legend & Stadium -->
-  <section class="main-sections">
-    <div class="card" id="legend-card"></div>
-    <div class="card" id="stadium-card"></div>
-  </section>
-  <!-- Trivia Banner -->
-  <section class="trivia-banner" id="trivia-section">
-    <div class="trivia-label">Daily Trivia</div>
-    <div class="trivia-q" id="triviaQ"></div>
-    <button class="trivia-btn" id="triviaBtn">SHOW ANSWER</button>
-    <div class="trivia-answer" id="triviaA" style="display:none;"></div>
-  </section>
-  <!-- Picks Section -->
-  <section class="picks-section">
-    <div class="picks-title">Today's Picks</div>
-    <div class="picks-subtitle">Curated gear to elevate your game</div>
-    <div class="picks-cards" id="picks-cards"></div>
-  </section>
-  <!-- DATA & SCRIPT -->
-  <script>
-    // Utils - deterministic random for "of the day"
-    function pickDailyRandom(arr, category) {
-      if (!arr.length) return null;
-      const today = new Date();
-      const dateStr = today.getFullYear() + String(today.getMonth()+1).padStart(2, '0') + String(today.getDate()).padStart(2, '0');
-      let hash = 0;
-      const seed = category + dateStr;
-      for (let i = 0; i < seed.length; i++) {
-        hash = (hash << 5) - hash + seed.charCodeAt(i); hash |= 0;
-      }
-      return arr[Math.abs(hash) % arr.length];
-    }
-
-    // --- 1. Football Legends --- (add more images if you like)
-    const footballLegends = [
-      {
-        name: "Pelé",
-        url: "https://en.wikipedia.org/wiki/Pel%C3%A9",
-        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=600&q=80", // Stadium lights
-        desc: "Regarded as the greatest of all time. Pelé lifted three World Cups and scored over a thousand goals, inspiring millions.",
-        highlights: "3x World Cup Winner • 1000+ Career Goals"
-      },
-      {
-        name: "Diego Maradona",
-        url: "https://en.wikipedia.org/wiki/Diego_Maradona",
-        image: "https://images.unsplash.com/photo-1505672678657-cc7037095e2c?auto=format&fit=crop&w=600&q=80",
-        desc: "Gifted, controversial, and magical. The Hand of God and the Goal of the Century all in one game.",
-        highlights: "1986 World Cup Winner • Napoli Legend"
-      },
-      {
-        name: "Johan Cruyff",
-        url: "https://en.wikipedia.org/wiki/Johan_Cruyff",
-        image: "https://images.unsplash.com/photo-1502052982179-502a5e2b9e10?auto=format&fit=crop&w=600&q=80",
-        desc: "The architect of Total Football, Cruyff was a visionary player and coach who changed the game forever. His intelligence, technique, and leadership made him one of the most influential figures in football history.",
-        highlights: "3x Ballon d'Or Winner • 9x Eredivisie Champion"
-      },
-      {
-        name: "Cristiano Ronaldo",
-        url: "https://en.wikipedia.org/wiki/Cristiano_Ronaldo",
-        image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=600&q=80",
-        desc: "The goal machine. Winner everywhere he's been, and never afraid of the big stage.",
-        highlights: "5x Ballon d'Or • 5x Champions League"
-      },
-      {
-        name: "Lionel Messi",
-        url: "https://en.wikipedia.org/wiki/Lionel_Messi",
-        image: "https://images.unsplash.com/photo-1505843278284-65c2a5475d43?auto=format&fit=crop&w=600&q=80",
-        desc: "The magician, master of dribbling, and the heart of Barcelona and Argentina. Small stature, huge legend.",
-        highlights: "8x Ballon d'Or • 2022 World Cup Winner"
-      },
-      {
-        name: "Mario Balotelli",
-        url: "https://en.wikipedia.org/wiki/Mario_Balotelli",
-        image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80",
-        desc: "Chaos and brilliance personified. Tales of goals, fireworks, and that unforgettable Why Always Me? moment.",
-        highlights: "Premier League Winner • Italian International"
-      }
-      // ...add more as desired      
-    ];
-
-    // --- 2. Stadiums ---
-    const stadiums = [
-      {
-        name: "Maracanã",
-        url: "https://en.wikipedia.org/wiki/Maracan%C3%A3_Stadium",
-        image: "https://images.unsplash.com/photo-1505843278284-65c2a5475d43?auto=format&fit=crop&w=800&q=80",
-        location: "Rio de Janeiro, Brazil",
-        desc: "A temple of Brazilian football, the Maracanã has witnessed some of the most memorable moments in World Cup history. The passion and energy of Brazilian fans make every match here an unforgettable experience.",
-        fact: "Capacity: 78,838 fans"
-      },
-      {
-        name: "Camp Nou",
-        url: "https://en.wikipedia.org/wiki/Camp_Nou",
-        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80",
-        location: "Barcelona, Spain",
-        desc: "Europe's largest stadium and home to FC Barcelona. Magic happens here on those Champions League nights.",
-        fact: "Capacity: 99,354 fans"
-      },
-      {
-        name: "Wembley Stadium",
-        url: "https://en.wikipedia.org/wiki/Wembley_Stadium",
-        image: "https://images.unsplash.com/photo-1505672678657-cc7037095e2c?auto=format&fit=crop&w=800&q=80",
-        location: "London, England",
-        desc: "The Home of Football. Wembley is where legends are crowned and dreams are made during finals.",
-        fact: "Capacity: 90,000 fans"
-      }
-      // ...add more      
-    ];
-
-    // --- 3. Trivia ---
-    const triviaQuestions = [
-      {
-        q: "What is the fastest goal ever scored in World Cup history?",
-        a: "Hakan Şükür, 11 seconds (2002, Turkey vs South Korea)"
-      },
-      {
-        q: "Which team has won the most UEFA Champions League titles?",
-        a: "Real Madrid (14 titles)"
-      },
-      {
-        q: "Who scored the 'Hand of God' goal?",
-        a: "Diego Maradona (Argentina vs England, 1986)"
-      }
-    ];
-
-    // --- 4. Daily Picks ---
-    const picks = [
-      {
-        label: "LIFE-CHANGING GEAR",
-        labelClass: "",
-        title: "Nike Phantom GX Elite",
-        url: "https://www.amazon.com/dp/B0CM2FW5TP/?tag=youraffiliatetag",
-        image: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=600&q=80",
-        desc: "Experience unmatched ball control with Nike's latest innovation. The textured upper and precision-tuned studs give you the edge you need to dominate every match.",
-        btn: "VIEW ON AMAZON"
-      },
-      {
-        label: "YOU NEED THIS",
-        labelClass: "green",
-        title: "Agility Training Ladder Kit",
-        url: "https://www.amazon.com/dp/B00Z8UB6IW/?tag=youraffiliatetag",
-        image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=600&q=80",
-        desc: "Boost your speed, coordination, and footwork with this professional-grade agility ladder. Includes cones, resistance bands, and a carrying bag.",
-        btn: "VIEW ON AMAZON"
-      },
-      {
-        label: "FAN GEAR",
-        labelClass: "gray",
-        title: "Premium Football Jersey Display Frame",
-        url: "https://www.amazon.com/dp/B08QZ4CV4Q/?tag=youraffiliatetag",
-        image: "https://images.unsplash.com/photo-1502052982179-502a5e2b9e10?auto=format&fit=crop&w=600&q=80",
-        desc: "Preserve and showcase your prized jerseys with this museum-quality display case. UV-protected glass keeps your memorabilia looking pristine for years.",
-        btn: "VIEW ON AMAZON"
-      }
-      // ...add more
-    ];
-
-    // -------- RENDER PAGE ---------
-    // Date & Day
-    const today = new Date();
-    document.getElementById('mainDate').textContent =
-      today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-    document.getElementById('dayName').textContent =
-      "It's " + today.toLocaleDateString('en-US', { weekday: "long" });
-
-    // -- LEGEND --
-    const legend = pickDailyRandom(footballLegends, 'legend');
-    document.getElementById("legend-card").innerHTML = legend ? `
-      <div class="card-img-wrap">
-        <div class="card-label">Legend of the Day</div>
-        <a href="${legend.url}" target="_blank" rel="noopener">
-        <img src="${legend.image}" alt="Legend - ${legend.name}" class="card-img" loading="lazy"></a>
+    <div class="card-content">
+      <div class="card-title">Johan Cruyff</div>
+      <div class="card-desc">
+        The architect of Total Football, Cruyff was a visionary player and coach who changed the game forever. His intelligence, technique, and leadership made him one of the most influential figures in football history.
       </div>
-      <div class="card-content">
-        <a href="${legend.url}" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
-        <div class="card-title">${legend.name}</div></a>
-        <div class="card-desc">${legend.desc || ""}</div>
-        <div class="card-highlights">${legend.highlights || ""}</div>
+      <hr class="card-hr">
+      <div class="card-subtle">Career Highlights</div>
+      <div class="card-highlights">
+        3x Ballon d'Or Winner &bull; 1974 World Cup Runner-up &bull; 9x Eredivisie Champion
       </div>
-    ` : "<div class='card-content'><b>(Add more legends!)</b></div>";
+    </div>
+  </div>
 
-    // -- STADIUM --
-    const stadium = pickDailyRandom(stadiums, 'stadium');
-    document.getElementById("stadium-card").innerHTML = stadium ? `
-      <div class="card-img-wrap">
-        <div class="card-label green">Stadium of the Day</div>
-        <a href="${stadium.url}" target="_blank" rel="noopener">
-        <img src="${stadium.image}" alt="Stadium - ${stadium.name}" class="card-img" loading="lazy"></a>
+  <!-- Stadium of the Day -->
+  <div class="card">
+    <div class="card-img-wrap">
+      <div class="card-label green">Stadium of the Day</div>
+      <img class="card-img" src="https://images.unsplash.com/photo-1502052982179-502a5e2b9e10?auto=format&fit=crop&w=800&q=80" alt="Camp Nou">
+    </div>
+    <div class="card-content">
+      <div class="card-title">Camp Nou</div>
+      <div class="card-desc">
+        <span class="card-info-top">&#9679; Barcelona, Spain</span>
+        The largest stadium in Europe and home to FC Barcelona, Camp Nou is a cathedral of football. Its electric atmosphere and rich history make it one of the most iconic venues in world football.
       </div>
-      <div class="card-content">
-        <a href="${stadium.url}" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
-        <div class="card-title">${stadium.name}</div></a>
-        <div class="card-desc">
-          <span style="color:#15b661; font-size:0.98em;">&#9679;</span>
-          <span style="color:#779594; font-size:0.98em; margin-left:7px;">${stadium.location || ''}</span>
-          <br>${stadium.desc || ""}
-        </div>
-        <div class="card-info" style="margin-top:0.89em;">${stadium.fact || ""}</div>
-      </div>
-    ` : "<div class='card-content'><b>(Add more stadiums!)</b></div>";
-
-    // -- TRIVIA --
-    const trivia = pickDailyRandom(triviaQuestions, 'trivia');
-    document.getElementById("triviaQ").textContent = trivia ? trivia.q : "(Add some trivia questions!)";
-    document.getElementById("triviaA").textContent = trivia ? trivia.a : "";
-    document.getElementById("triviaBtn").onclick = ()=> {
-      document.getElementById("triviaA").style.display = "block";
-      document.getElementById("triviaBtn").disabled = true;
-      document.getElementById("triviaBtn").style.opacity = "0.7";
-    };
-
-    // -- PICKS --
-    // Show three picks, as in your screenshot
-    let picksPool = picks.slice();
-    function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}
-    shuffle(picksPool); // so picks rotate each day if >3 products provided
-    picksPool = picksPool.slice(0,3);
-
-    document.getElementById("picks-cards").innerHTML = picksPool.map(pick=>`
-      <div class="pick-card">
-        <div class="pick-img-wrap">
-          <div class="pick-label${pick.labelClass?' '+pick.labelClass:''}">${pick.label}</div>
-          <a href="${pick.url}" target="_blank" rel="noopener">
-          <img src="${pick.image}" alt="Pick - ${pick.title}" class="pick-img" loading="lazy"></a>
-        </div>
-        <div class="pick-content">
-          <a href="${pick.url}" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
-          <div class="pick-title">${pick.title}</div></a>
-          <div class="pick-desc">${pick.desc || ""}</div>
-          <a class="pick-btn" href="${pick.url}" target="_blank" rel="noopener">${pick.btn||"VIEW"}</a>
-        </div>
-      </div>
-    `).join('');
-  </script>
-</body>
-</html>
+      <hr class="card-hr">
+      <div class="card-subtle">Capacity</div>
+      <div class="card-info">99,354 fans</div>
+    </div>
+  </div>
+</section>
