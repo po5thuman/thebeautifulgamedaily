@@ -1,87 +1,263 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Football Fucking Homepage</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Football fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: Arial, Helvetica, sans-serif; background:#eee; color:#1e2227; margin:0; padding:0;}
-    .day-header {
-      text-align: center;
-      margin-top: 2.4rem;
-      margin-bottom: 2.8rem;
+    /* Global football colors */
+    body {
+      background: #f6f8f3;
+      margin: 0;
+      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+      color: #212e18;
     }
-    #date {
-      font-size: 2.2rem;
+    .site-header {
+      background: #108f46;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 34px 10px 34px;
+      box-sizing: border-box;
+      box-shadow: 0 2px 14px 0 rgba(17,143,70,.10);
+    }
+    .site-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.1rem;
       font-weight: 700;
-      margin-bottom: 0.2em;
       letter-spacing: 0.02em;
+      padding-left: 6px;
     }
-    #score-intro {
-      color: #343434;
-      font-size: 1.16rem;
-      margin-top:0.66em;
+    .site-ball {
+      font-size: 2rem;
+      margin-right: 6px;
+      display: flex;
+      align-items: center;
     }
-    .score-highlight {
-      font-size: 1.22em;
-      font-weight: bold;
-      display: block;
-      margin: 0.42em 0 0.11em 0;
-    }
-    .day-nav {
-      margin: 0 auto;
-      max-width: 650px;
+    /* Football hero */
+    .hero-section {
+      background: linear-gradient(92deg, #108f46 64%, #175c2f 100%);
+      color: #fff;
       text-align: center;
-      margin-bottom:1.5rem;
+      padding: 44px 0 36px 0;
+      box-shadow: 0 4px 32px 2px rgba(17,143,70,0.09);
+      margin-bottom: 34px;
+      position: relative;
+      border-bottom: 3px solid #f9be00;
+    }
+    .hero-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.3rem;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+      margin-bottom: 0.28em;
+    }
+    .hero-score-intro {
+      font-size: 1.15rem;
+      opacity: 0.94;
+    }
+    .hero-score-highlight {
+      font-size: 1.32em;
+      font-weight: bold;
+      margin-top: 0.53em;
+      letter-spacing: 0.01em;
+      display: block;
+      color: #f9be00;
+      text-shadow: 1px 1px 2px #2333231a;
+    }
+    .hero-ball-bg {
+      position: absolute;
+      right: 0; top: 0;
+      opacity: .12;
+      z-index: 0;
+      width: 210px;
+      height: 210px;
+      pointer-events: none;
+    }
+    /* Navigation */
+    .day-nav {
+      margin: 1.7rem auto 0.9rem auto;
+      max-width: 800px;
+      text-align: center;
     }
     .day-link {
-      display: inline-block; margin:0 16px; background: #f5f5f5; border-radius: 6px;
-      padding: 6px 18px; text-decoration: none; color: #845400; font-weight:600; border: 1px solid #dec48e; font-size: 1em; transition: background 0.15s;
+      display: inline-block; margin:0 19px; background: #e4f8e9; border-radius: 6px;
+      padding: 9px 18px; text-decoration: none; color: #108f46; font-family: 'Montserrat', sans-serif; font-weight:600; border: 1.5px solid #108f46; font-size: 1.1em; transition: background 0.15s;
     }
-    .day-link:hover { background: #fbe9d0; }
+    .day-link:hover { background: #aed7bc; }
     .today-label { color:#bbb; font-size: 0.97em; }
-    h4 { margin-top:2.5rem; margin-bottom:0.3rem; letter-spacing:0.04em; }
-    .category { margin: 0 auto 2.5rem auto; max-width: 620px; background: #fff; box-shadow:0 4px 16px 0 rgba(0,0,0,0.03); border-radius:8px; padding: 18px 30px;}
-    .label { color: #b17d16; font-size:0.94em; }
-    a { color: #1771d6; text-decoration:underline; }
+    /* Cards grid */
+    .main-grid {
+      max-width: 1070px;
+      margin: 0 auto 2.2rem auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+      gap: 2.2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 3px 16px 0 rgba(40,70,40,0.12);
+      padding: 2rem 2.2rem 2.2rem 2.2rem;
+      margin-bottom: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .card-label {
+      font-family: 'Montserrat', sans-serif;
+      background: #108f46;
+      color: #fff;
+      font-size: 0.95em;
+      font-weight: bold;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 15px;
+      border-radius: 3.4px;
+      position: absolute;
+      left: 1.5rem; top: 1.1rem;
+      box-shadow: 0 2px 8px #108f4640;
+      z-index: 2;
+    }
+    .card-label.gold {
+      background: #f9be00;
+      color: #140e02;
+    }
+    .card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.46em;
+      font-weight: 700;
+      color: #1B5E20;
+      margin: 0.9em 0 0.08em 0;
+      letter-spacing: -0.01em;
+    }
+    .card-desc {
+      color: #2e422a;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.08em;
+      margin: 0.4em 0 1.12em 0;
+      line-height: 1.54;
+    }
+    .card-link, .card-info, .card-extra {
+      color: #108f46;
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color .18s;
+    }
+    .card-extra {
+      display: block;
+      margin-top: 0.62em;
+      font-size: 1em;
+      color: #c3aa0b;
+    }
+    .card-info {
+      color: #2f8309;
+      font-size: 1.01em;
+      font-weight: 600;
+      margin-top: 0.3em;
+      letter-spacing: 0.01em;
+    }
+    .trivia-btn {
+      background: #108f46;
+      color: #fff;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.08em;
+      padding: 9px 21px;
+      border-radius: 7px;
+      margin-top: 0.8em;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 6px #108f4630;
+      transition: background .20s;
+    }
+    .trivia-btn:hover, .trivia-btn:focus { background: #175c2f; }
+    .trivia-answer {
+      display:none;
+      margin-top: 1.1em;
+      font-size: 1.06em;
+      color: #f9be00;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+    }
+    @media (max-width: 900px) {
+      .main-grid { grid-template-columns: 1fr; gap: 1.2rem;}
+      .site-header { padding: 15px 12px;}
+      .hero-section { padding: 14vw 0 11vw 0;}
+      .card { padding: 1.23rem 1em 1.23rem 1em;}
+    }
     @media (max-width: 700px) {
-      .category, .day-nav { max-width: 98vw; padding: 12px 2vw; }
-      #date { font-size: 1.6rem;}
-      #score-intro { font-size: 1.04rem;}
+      .main-grid { max-width:98vw;}
+      .hero-score-highlight { font-size:1.03em;}
+      .hero-date { font-size:1.33rem; }
+      .site-name { font-size: 1.15rem;}
     }
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="site-name">Football Fucking Homepage</div>
+    <div class="site-ball" title="football">
+      <!-- Soccer Ball SVG Icon -->
+      <svg fill="#fff" width="32" height="32" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#fff"/><circle cx="24" cy="24" r="18" fill="none" stroke="#108f46" stroke-width="2"/><circle cx="24" cy="24" r="7" fill="#108f46" stroke="#175c2f" stroke-width="2"/><path d="M24 17 l-5 -7 M24 17 l5 -7 M24 31 l-5 7 M24 31 l5 7 M17 24 l-7 -5 M17 24 l-7 5 M31 24 l7 -5 M31 24 l7 5" stroke="#108f46" stroke-width="2" fill="none"/></svg>
+    </div>
+  </header>
   <div class="day-nav" id="dayNav"></div>
-  <div class="day-header">
-    <div id="date"></div>
-    <div id="score-intro"></div>
-  </div>
-  <div class="category">
-    <div class="label">FOOTBALL LEGEND OF THE DAY:</div>
-    <div id="legend"></div>
-  </div>
-  <div class="category">
-    <div class="label">STADIUM OF THE DAY:</div>
-    <div id="stadium"></div>
-  </div>
-  <div class="category">
-    <div class="label">DAILY TRIVIA QUESTION:</div>
-    <div id="trivia"></div>
-  </div>
-  <div class="category">
-    <div class="label">LIFE-CHANGING GEAR OF THE DAY:</div>
-    <div id="gear"></div>
-  </div>
-  <div class="category">
-    <div class="label">STUFF YOU DIDN'T KNOW YOU NEED:</div>
-    <div id="stuff"></div>
-  </div>
-  <div class="category">
-    <div class="label">FAN GEAR OF THE DAY:</div>
-    <div id="fangear"></div>
-  </div>
+  <section class="hero-section">
+    <div class="hero-date" id="date"></div>
+    <div class="hero-score-intro" id="score-intro"></div>
+    <svg class="hero-ball-bg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="38" stroke="#fff" stroke-width="4" fill="none"/>
+      <circle cx="40" cy="40" r="30" stroke="#f9be00" stroke-width="1.5" fill="none"/>
+      <circle cx="40" cy="40" r="16" stroke="#fff" stroke-width="1.5" fill="none"/>
+    </svg>
+  </section>
+  <main class="main-grid">
+    <div class="card">
+      <div class="card-label">Legend of the Day</div>
+      <div class="card-title" id="legend-title"></div>
+      <div class="card-desc" id="legend-desc"></div>
+      <a id="legend-link" class="card-link" target="_blank"></a>
+    </div>
+    <div class="card">
+      <div class="card-label gold">Stadium of the Day</div>
+      <div class="card-title" id="stadium-title"></div>
+      <div class="card-desc" id="stadium-desc"></div>
+      <a id="stadium-link" class="card-link" target="_blank"></a>
+      <div class="card-info" id="stadium-info"></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Trivia</div>
+      <div class="card-title" id="trivia-title"></div>
+      <button class="trivia-btn" id="showTrivia">Show Answer</button>
+      <div class="trivia-answer" id="triviaA"></div>
+    </div>
+    <div class="card">
+      <div class="card-label gold">Life-Changing Gear</div>
+      <div class="card-title" id="gear-title"></div>
+      <div class="card-desc" id="gear-desc"></div>
+      <a id="gear-link" class="card-link" target="_blank">more &gt;&gt;</a>
+    </div>
+    <div class="card">
+      <div class="card-label">You Didn't Know You Need</div>
+      <div class="card-title" id="stuff-title"></div>
+      <div class="card-desc" id="stuff-desc"></div>
+      <a id="stuff-link" class="card-link" target="_blank">more &gt;&gt;</a>
+    </div>
+    <div class="card">
+      <div class="card-label gold">Fan Gear</div>
+      <div class="card-title" id="fan-title"></div>
+      <div class="card-desc" id="fan-desc"></div>
+      <a id="fan-link" class="card-link" target="_blank">more &gt;&gt;</a>
+    </div>
+  </main>
   <script>
-    // -- Day Offset for navigation
+    // Day Offset for navigation
     function getDayOffset() {
       const params = new URLSearchParams(location.search);
       const d = parseInt(params.get('d'), 10);
@@ -94,7 +270,6 @@
       now.setDate(now.getDate() + offset);
       return now;
     }
-    // -- Deterministic picker using date
     function pickDailyRandom(arr, category, date) {
       if (arr.length === 0) return null;
       const dateStr = date.getFullYear() + String(date.getMonth()+1).padStart(2, '0') + String(date.getDate()).padStart(2, '0');
@@ -107,7 +282,7 @@
       const idx = Math.abs(hash) % arr.length;
       return arr[idx];
     }
-    // === Scores of the Day Section ===
+    // --- Data Arrays ---
     const scoresOfTheDay = [
       { date: "5/13", desc: "Aguero's dramatic title-winning goal: Manchester City 3-2 QPR (2012)" },
       { date: "7/8", desc: "Germany 7-1 Brazil (2014 World Cup Semi-final)" },
@@ -120,68 +295,52 @@
       { date: "6/17", desc: "Romania 3-2 Argentina (1994 World Cup)" }
     ];
     const footballLegends = [
-      { name: "Pelé", url: "https://en.wikipedia.org/wiki/Pel%C3%A9" },
-      { name: "Diego Maradona", url: "https://en.wikipedia.org/wiki/Diego_Maradona" },
-      { name: "Lionel Messi", url: "https://en.wikipedia.org/wiki/Lionel_Messi" },
-      { name: "Cristiano Ronaldo", url: "https://en.wikipedia.org/wiki/Cristiano_Ronaldo" },
-      { name: "Zinedine Zidane", url: "https://en.wikipedia.org/wiki/Zinedine_Zidane" },
-      { name: "Johan Cruyff", url: "https://en.wikipedia.org/wiki/Johan_Cruyff" },
-      { name: "George Best", url: "https://en.wikipedia.org/wiki/George_Best" },
-      { name: "Lev Yashin", url: "https://en.wikipedia.org/wiki/Lev_Yashin" },
-      { name: "Franz Beckenbauer", url: "https://en.wikipedia.org/wiki/Franz_Beckenbauer" },
-      { name: "Ronaldo Nazário", url: "https://en.wikipedia.org/wiki/Ronaldo_(Brazilian_footballer)" },
-      { name: "Ronaldinho", url: "https://en.wikipedia.org/wiki/Ronaldinho" },
-      { name: "David Beckham", url: "https://en.wikipedia.org/wiki/David_Beckham" },
-      { name: "Gianluigi Buffon", url: "https://en.wikipedia.org/wiki/Gianluigi_Buffon" },
-      { name: "Roberto Baggio", url: "https://en.wikipedia.org/wiki/Roberto_Baggio" },
-      { name: "Andrés Iniesta", url: "https://en.wikipedia.org/wiki/Andr%C3%A9s_Iniesta" },
-      { name: "Paolo Maldini", url: "https://en.wikipedia.org/wiki/Paolo_Maldini" },
-      { name: "Xavi", url: "https://en.wikipedia.org/wiki/Xavi" },
-      { name: "Alfredo Di Stéfano", url: "https://en.wikipedia.org/wiki/Alfredo_Di_St%C3%A9fano" },
-      { name: "Garrincha", url: "https://en.wikipedia.org/wiki/Garrincha" },
-      { name: "Romário", url: "https://en.wikipedia.org/wiki/Rom%C3%A1rio" },
-      { name: "Marco van Basten", url: "https://en.wikipedia.org/wiki/Marco_van_Basten" },
-      { name: "Thierry Henry", url: "https://en.wikipedia.org/wiki/Thierry_Henry" },
-      { name: "Kaká", url: "https://en.wikipedia.org/wiki/Kak%C3%A1" },
-      { name: "Didier Drogba", url: "https://en.wikipedia.org/wiki/Didier_Drogba" },
-      { name: "Samuel Eto'o", url: "https://en.wikipedia.org/wiki/Samuel_Eto%27o" },
-      { name: "Roberto Carlos", url: "https://en.wikipedia.org/wiki/Roberto_Carlos_(footballer,_born_1973)" },
-      { name: "Luis Suárez", url: "https://en.wikipedia.org/wiki/Luis_Su%C3%A1rez" },
-      { name: "Eric Cantona", url: "https://en.wikipedia.org/wiki/Eric_Cantona" },
-      { name: "Gary Lineker", url: "https://en.wikipedia.org/wiki/Gary_Lineker" },
-      { name: "Michael Owen", url: "https://en.wikipedia.org/wiki/Michael_Owen" },
-      { name: "Steven Gerrard", url: "https://en.wikipedia.org/wiki/Steven_Gerrard" },
-      { name: "Frank Lampard", url: "https://en.wikipedia.org/wiki/Frank_Lampard" },
-      { name: "Wayne Rooney", url: "https://en.wikipedia.org/wiki/Wayne_Rooney" },
-      { name: "Alan Shearer", url: "https://en.wikipedia.org/wiki/Alan_Shearer" },
-      { name: "Sergio Ramos", url: "https://en.wikipedia.org/wiki/Sergio_Ramos" },
-      { name: "Zlatan Ibrahimović", url: "https://en.wikipedia.org/wiki/Zlatan_Ibrahimovi%C4%87" },
-      { name: "Andriy Shevchenko", url: "https://en.wikipedia.org/wiki/Andriy_Shevchenko" },
-      { name: "Lothar Matthäus", url: "https://en.wikipedia.org/wiki/Lothar_Matth%C3%A4us" },
-      { name: "Ruud Gullit", url: "https://en.wikipedia.org/wiki/Ruud_Gullit" },
-      { name: "Arjen Robben", url: "https://en.wikipedia.org/wiki/Arjen_Robben" },
-      { name: "Clarence Seedorf", url: "https://en.wikipedia.org/wiki/Clarence_Seedorf" },
-      { name: "Fernando Torres", url: "https://en.wikipedia.org/wiki/Fernando_Torres" },
-      { name: "Mario Balotelli", url: "https://en.wikipedia.org/wiki/Mario_Balotelli" },
-      { name: "Carles Puyol", url: "https://en.wikipedia.org/wiki/Carles_Puyol" },
-      { name: "Oliver Kahn", url: "https://en.wikipedia.org/wiki/Oliver_Kahn" },
-      { name: "Patrice Evra", url: "https://en.wikipedia.org/wiki/Patrice_Evra" },
-      { name: "Socrates", url: "https://en.wikipedia.org/wiki/S%C3%B3crates" },
-      { name: "Fabio Cannavaro", url: "https://en.wikipedia.org/wiki/Fabio_Cannavaro" },
-      { name: "Carlos Valderrama", url: "https://en.wikipedia.org/wiki/Carlos_Valderrama" },
-      { name: "Harald Schumacher", url: "https://en.wikipedia.org/wiki/Harald_Schumacher" }
+      {
+        name: "Pelé",
+        url: "https://en.wikipedia.org/wiki/Pel%C3%A9",
+        desc: "The king of football. Three World Cups and more than 1000 goals.",
+      },
+      {
+        name: "Diego Maradona",
+        url: "https://en.wikipedia.org/wiki/Diego_Maradona",
+        desc: "Hand of God, Goal of the Century. Pure magic and madness.",
+      },
+      {
+        name: "Lionel Messi",
+        url: "https://en.wikipedia.org/wiki/Lionel_Messi",
+        desc: "Smallest GOAT, master magician, World and Ballon d'Or winner.",
+      },
+      {
+        name: "Cristiano Ronaldo",
+        url: "https://en.wikipedia.org/wiki/Cristiano_Ronaldo",
+        desc: "Machine of goals, athletic beast, winner everywhere.",
+      },
+      {
+        name: "Johan Cruyff",
+        url: "https://en.wikipedia.org/wiki/Johan_Cruyff",
+        desc: "Total Football father, brilliant in style and mind.",
+      }
+      // ...add more as desired
     ];
     const stadiums = [
-      { name: "Camp Nou (Barcelona)", url: "https://en.wikipedia.org/wiki/Camp_Nou" },
-      { name: "Wembley Stadium (London)", url: "https://en.wikipedia.org/wiki/Wembley_Stadium" },
-      { name: "Maracanã (Rio de Janeiro)", url: "https://en.wikipedia.org/wiki/Maracan%C3%A3_Stadium" },
-      { name: "San Siro (Milan)", url: "https://en.wikipedia.org/wiki/San_Siro" },
-      { name: "Santiago Bernabéu (Madrid)", url: "https://en.wikipedia.org/wiki/Santiago_Bernab%C3%A9u_Stadium" },
-      { name: "Allianz Arena (Munich)", url: "https://en.wikipedia.org/wiki/Allianz_Arena" },
-      { name: "Old Trafford (Manchester)", url: "https://en.wikipedia.org/wiki/Old_Trafford" },
-      { name: "Signal Iduna Park (Dortmund)", url: "https://en.wikipedia.org/wiki/Westfalenstadion" },
-      { name: "Anfield (Liverpool)", url: "https://en.wikipedia.org/wiki/Anfield" },
-      { name: "La Bombonera (Buenos Aires)", url: "https://en.wikipedia.org/wiki/La_Bombonera" }
+      {
+        name: "Camp Nou (Barcelona)",
+        url: "https://en.wikipedia.org/wiki/Camp_Nou",
+        desc: "Europe's largest stadium, home of epic nights in football history.",
+        info: "Capacity 99,354"
+      },
+      {
+        name: "Wembley Stadium (London)",
+        url: "https://en.wikipedia.org/wiki/Wembley_Stadium",
+        desc: "The venue of finals, dreams, and heartbreak in England.",
+        info: "Capacity 90,000"
+      },
+      {
+        name: "Maracanã (Rio de Janeiro)",
+        url: "https://en.wikipedia.org/wiki/Maracan%C3%A3_Stadium",
+        desc: "The soul of Brazilian football, host of unforgettable World Cup moments.",
+        info: "Capacity 78,838"
+      }
     ];
     const triviaQuestions = [
       {
@@ -193,77 +352,62 @@
         a: "Roberto Baggio"
       },
       {
-        q: "Which club has won the most UEFA Champions League titles?",
-        a: "Real Madrid"
-      },
-      {
-        q: "Which country hosted the first FIFA World Cup?",
-        a: "Uruguay"
-      },
-      {
-        q: "Who is the all-time top scorer in the Premier League?",
-        a: "Alan Shearer"
-      },
-      {
-        q: "Name the only player to win the Ballon d'Or, World Cup, and Champions League.",
-        a: "Sir Bobby Charlton"
-      },
-      {
         q: "Who scored the 'Hand of God' goal?",
         a: "Diego Maradona"
       },
       {
-        q: "Which African nation reached the World Cup quarter finals in 2002?",
-        a: "Senegal"
-      },
-      {
-        q: "Who is known as 'El Fenómeno'?",
-        a: "Ronaldo Nazário"
-      },
-      {
-        q: "What's the maximum number of substitutions per team in a FIFA World Cup knockout match (since 2018)?",
-        a: "Five"
+        q: "Which club has won the most UEFA Champions League titles?",
+        a: "Real Madrid"
       }
     ];
     const lifeChangingGear = [
       {
         title: "Adidas Uniforia Match Ball",
+        desc: "Official match ball for international play. Fly like a pro.",
         url: "https://www.amazon.com/dp/B07ZQPYJ5Q/?tag=youraffiliatetag"
       },
       {
         title: "Nike Mercurial Superfly 9",
+        desc: "Elite speed boots for dream goals—worn by international stars.",
         url: "https://www.amazon.com/dp/B0B3TZD66X/?tag=youraffiliatetag"
       },
       {
         title: "SKLZ Agility Ladder",
+        desc: "Essential for lightning footwork and professional drills.",
         url: "https://www.amazon.com/dp/B000P7PVW8/?tag=youraffiliatetag"
       }
     ];
     const stuffYouDidntKnow = [
       {
         title: "Quick-Dry Football Socks",
+        desc: "Zero blisters, max comfort. Never complain about your feet again.",
         url: "https://www.amazon.com/dp/B013Q158UM/?tag=youraffiliatetag"
       },
       {
-        title: "Portable Pop-Up Soccer Goal",
-        url: "https://www.amazon.com/dp/B00Z8UB6IW/?tag=youraffiliatetag"
+        title: "Football Ice Cube Tray",
+        desc: "Celebrate every match with ball-shaped ice. The real MVP of parties.",
+        url: "https://www.amazon.com/dp/B084Z9ZQXM/?tag=youraffiliatetag"
       },
       {
-        title: "Football Ice Cube Tray (For Serious Fans)",
-        url: "https://www.amazon.com/dp/B084Z9ZQXM/?tag=youraffiliatetag"
+        title: "Portable Pop-Up Soccer Goal",
+        desc: "Score anywhere. Garden, beach, street—it's always game time.",
+        url: "https://www.amazon.com/dp/B00Z8UB6IW/?tag=youraffiliatetag"
       }
     ];
     const fanGear = [
       {
         title: "Manchester United Home Jersey",
+        desc: "Wear glory. Official United kit—legend for any fan.",
         url: "https://www.amazon.com/dp/B0C5G1X8FP/?tag=youraffiliatetag"
       },
       {
         title: "Liverpool FC Scarf",
+        desc: "Walk on with pride. Classic scarf for matchday chills.",
         url: "https://www.amazon.com/dp/B01LYLC61E/?tag=youraffiliatetag"
       },
       {
         title: "FC Barcelona Cap",
+        desc: "Barça to the bone. Represent on sunny days.",
         url: "https://www.amazon.com/dp/B01GZZ8SXE/?tag=youraffiliatetag"
       }
     ];
@@ -272,7 +416,7 @@
       const offset = getDayOffset();
       const thisDate = getDateForOffset(offset);
 
-      // --- Previous & Next navigation
+      // Navigation
       let navHtml = '';
       navHtml += `<a class="day-link" href="?d=${offset-1}">&#8592; Previous Day</a> `;
       if (offset < 0) {
@@ -283,57 +427,59 @@
         navHtml += `<span class="today-label">(Today)</span>`;
       }
       document.getElementById("dayNav").innerHTML = navHtml;
-
-      // --- Date for header
+      
+      // Hero date & score
       document.getElementById("date").textContent =
         thisDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-      // === Clean intro with score ===
       const dayStr = (thisDate.getMonth()+1) + "/" + thisDate.getDate();
       let scoreObj = scoresOfTheDay.find(s => s.date === dayStr);
       if (!scoreObj) scoreObj = pickDailyRandom(scoresOfTheDay, 'score', thisDate);
-
       document.getElementById("score-intro").innerHTML =
-        `On today’s day:
-        <span class="score-highlight">${scoreObj.desc}</span>`;
+        `On today’s day,<span class="hero-score-highlight">${scoreObj.desc}</span>`;
 
-      // Legends
+      // Legend
       const legend = pickDailyRandom(footballLegends, 'legend', thisDate);
-      document.getElementById('legend').innerHTML = legend
-        ? `<a href="${legend.url}" target="_blank">${legend.name}</a>`
-        : "(add more legends!)";
-      // Stadiums
+      document.getElementById('legend-title').textContent = legend ? legend.name : "(add more legends!)";
+      document.getElementById('legend-desc').textContent = legend ? legend.desc : "";
+      document.getElementById('legend-link').textContent = legend ? "Wikipedia" : "";
+      document.getElementById('legend-link').href = legend ? legend.url : "#";
+
+      // Stadium
       const stadium = pickDailyRandom(stadiums, 'stadium', thisDate);
-      document.getElementById('stadium').innerHTML = stadium
-        ? `<a href="${stadium.url}" target="_blank">${stadium.name}</a>`
-        : "(add more stadiums!)";
-      // Trivia with reveal button
+      document.getElementById('stadium-title').textContent = stadium ? stadium.name : "(add more stadiums!)";
+      document.getElementById('stadium-desc').textContent = stadium ? stadium.desc : "";
+      document.getElementById('stadium-link').textContent = stadium ? "Learn More" : "";
+      document.getElementById('stadium-link').href = stadium ? stadium.url : "#";
+      document.getElementById('stadium-info').textContent = stadium ? stadium.info : "";
+
+      // Trivia
       const triviaObj = pickDailyRandom(triviaQuestions, 'trivia', thisDate);
-      if (triviaObj) {
-        const triviaDiv = document.getElementById('trivia');
-        triviaDiv.innerHTML = `${triviaObj.q} <button id="showTrivia">Show Answer</button> <span id="triviaA" style="display:none; margin-left:12px; font-weight:bold; color:#008300">${triviaObj.a}</span>`;
-        document.getElementById('showTrivia').onclick = () => {
-          document.getElementById('triviaA').style.display = "inline";
-          document.getElementById('showTrivia').disabled = true;
-        };
-      } else {
-        document.getElementById('trivia').textContent = "(add more trivia!)";
-      }
-      // Life-Changing Gear (affiliate)
+      document.getElementById('trivia-title').textContent = triviaObj ? triviaObj.q : "(add more trivia!)";
+      document.getElementById('triviaA').textContent = triviaObj ? triviaObj.a : "";
+      document.getElementById('triviaA').style.display = "none";
+      document.getElementById('showTrivia').disabled = false;
+      document.getElementById('showTrivia').onclick = () => {
+        document.getElementById('triviaA').style.display = "block";
+        document.getElementById('showTrivia').disabled = true;
+      };
+
+      // Gear
       const gear = pickDailyRandom(lifeChangingGear, 'gear', thisDate);
-      document.getElementById('gear').innerHTML = gear
-        ? `${gear.title} <a href="${gear.url}" target="_blank">more&gt;&gt;</a>`
-        : "(add more gear!)";
-      // Stuff you didn't know you need
+      document.getElementById('gear-title').textContent = gear ? gear.title : "(add more gear!)";
+      document.getElementById('gear-desc').textContent = gear ? gear.desc : "";
+      document.getElementById('gear-link').href = gear ? gear.url : "#";
+
+      // Stuff You Didn't Know
       const stuff = pickDailyRandom(stuffYouDidntKnow, 'stuff', thisDate);
-      document.getElementById('stuff').innerHTML = stuff
-        ? `${stuff.title} <a href="${stuff.url}" target="_blank">more&gt;&gt;</a>`
-        : "(add more stuff!)";
+      document.getElementById('stuff-title').textContent = stuff ? stuff.title : "(add more stuff!)";
+      document.getElementById('stuff-desc').textContent = stuff ? stuff.desc : "";
+      document.getElementById('stuff-link').href = stuff ? stuff.url : "#";
+
       // Fan Gear
       const fan = pickDailyRandom(fanGear, 'fan', thisDate);
-      document.getElementById('fangear').innerHTML = fan
-        ? `${fan.title} <a href="${fan.url}" target="_blank">more&gt;&gt;</a>`
-        : "(add more fan gear!)";
+      document.getElementById('fan-title').textContent = fan ? fan.title : "(add more fan gear!)";
+      document.getElementById('fan-desc').textContent = fan ? fan.desc : "";
+      document.getElementById('fan-link').href = fan ? fan.url : "#";
     });
   </script>
 </body>
