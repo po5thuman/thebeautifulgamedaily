@@ -57,33 +57,23 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;
     }
-    .hero-score-intro {
-      font-size: 1.09rem;
-      margin-bottom: .08em;
-      opacity: 0.98;
-      font-family: 'Open Sans', sans-serif;
-    }
-    .hero-score-highlight {
-      font-size: 1.4em;
-      font-weight: bold;
-      margin-top: 0.32em;
-      color: #f9be00;
-      letter-spacing: 0.01em;
+    .hero-countdown {
+      margin-top: 1.6em;
+      font-size: 1.28em;
       font-family: 'Montserrat', sans-serif;
-      display: block;
+      color: #f9be00;
+      font-weight:bold;
+      letter-spacing:0.01em;
     }
-    .top-row {
+    .top-row, .bottom-row {
       display: flex;
       gap: 2.2rem;
       max-width: 1200px;
-      margin: 0 auto 0 auto;
+      margin: 0 auto;
       align-items: stretch;
       justify-content: center;
     }
-    .top-row .card {
-      flex: 1 1 0px;
-      min-width: 260px;
-    }
+    .top-row, .mid-row { margin-top: 0; }
     .mid-row {
       max-width: 1200px;
       margin: 2.2rem auto 0 auto;
@@ -91,13 +81,9 @@
       display: block;
     }
     .bottom-row {
-      display: flex;
-      gap: 2.2rem;
-      max-width: 1200px;
       margin: 2.2rem auto 2.5rem auto;
-      align-items: stretch;
-      justify-content: center;
     }
+    .top-row .card,
     .bottom-row .card {
       flex: 1 1 0px;
       min-width: 260px;
@@ -251,8 +237,7 @@
   <section class="hero-section">
     <div class="hero-date" id="date"></div>
     <div class="hero-day" id="day"></div>
-    <div class="hero-score-intro">On today’s day,</div>
-    <div class="hero-score-highlight" id="score"></div>
+    <div class="hero-countdown" id="countdown"></div>
   </section>
   <div class="top-row">
     <div class="card">
@@ -313,7 +298,6 @@
       now.setDate(now.getDate() + offset);
       return now;
     }
-    // Utility to fetch JSON data from root folder
     async function loadData(url) {
       const response = await fetch(url);
       if (!response.ok) throw new Error("Failed to fetch " + url);
@@ -330,11 +314,22 @@
       const idx = Math.abs(hash) % arr.length;
       return arr[idx];
     }
+    function getCountdown(targetDate, todayDate) {
+      const diffMs = targetDate.getTime() - todayDate.getTime();
+      return Math.ceil(diffMs / (1000*60*60*24)); // in days
+    }
 
     async function startSite() {
       const offset = getDayOffset();
       const thisDate = getDateForOffset(offset);
       const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      const nextWorldCup = new Date(Date.UTC(2026, 5, 11)); // June 11, 2026
+      let wcDays = getCountdown(nextWorldCup, thisDate);
+      document.getElementById("date").textContent =
+        thisDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      document.getElementById("day").textContent = `It’s ${days[thisDate.getDay()]}`;
+      document.getElementById("countdown").textContent =
+        `World Cup Kick Off in ${wcDays} Days`;
 
       // Fetch JSON data from root directory
       const [legends, stadiums, trivia, links] = await Promise.all([
@@ -344,19 +339,8 @@
         loadData('links.json')
       ]).catch(e=>{
         alert("Error loading data: " + e.message);
-        return [[],[],[],[]]; // fallback
+        return [[],[],[],[]];
       });
-
-      // HERO: Show today's date, weekday, and a "score" (here: legend name + stadium name for demo)
-      document.getElementById("date").textContent =
-        thisDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-      document.getElementById("day").textContent = `It’s ${days[thisDate.getDay()]}.`;
-
-      // For score: (use links or trivia for actual score-of-the-day)
-      // For demo, legend + stadium
-      let scoreHighlight =
-        `${pickDailyRandom(legends, 'legend', thisDate)?.name || ''} at ${pickDailyRandom(stadiums, 'stadium', thisDate)?.name || ''}`;
-      document.getElementById("score").textContent = scoreHighlight;
 
       // Legend card
       const legend = pickDailyRandom(legends, 'legend', thisDate);
@@ -388,8 +372,7 @@
         document.getElementById('showTrivia').disabled = true;
       };
 
-      // Bottom gear/affiliate cards (fetch from links.json) ----
-      // links.json should have .gear, .stuff, .fan arrays (see template below)
+      // Bottom gear/affiliate cards (fetch from links.json)
       const gearObj = pickDailyRandom(links.gear || [], 'gear', thisDate);
       document.getElementById('gear-title').textContent = gearObj ? gearObj.title : "(add more gear!)";
       document.getElementById('gear-desc').textContent = gearObj ? gearObj.desc : "";
