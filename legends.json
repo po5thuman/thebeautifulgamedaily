@@ -10,5 +10,173 @@
     "url": "https://en.wikipedia.org/wiki/Diego_Maradona",
     "desc": "Hand of God, Goal of the Century. Pure magic and madness.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/9/97/Diego_maradona_1986.jpg"
+  },
+  {
+    "name": "Lionel Messi",
+    "url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+    "desc": "Smallest GOAT, master magician, Ballon d'Or and World Cup winner.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Lionel_Messi_20180626.jpg"
+  },
+  {
+    "name": "Cristiano Ronaldo",
+    "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo",
+    "desc": "Goal machine, athletic beast, winner everywhere.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg"
+  },
+  {
+    "name": "Johan Cruyff",
+    "url": "https://en.wikipedia.org/wiki/Johan_Cruyff",
+    "desc": "Total Football father, brilliant in style and mind.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Johan_Cruyff_1974c.jpg"
+  },
+  {
+    "name": "Zinedine Zidane",
+    "url": "https://en.wikipedia.org/wiki/Zinedine_Zidane",
+    "desc": "The bald maestro. 1998 Ballon d'Or and World Cup champion.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/da/Zinedine_Zidane_Cannes_2018.jpg"
+  },
+  {
+    "name": "Ronaldinho",
+    "url": "https://en.wikipedia.org/wiki/Ronaldinho",
+    "desc": "Joyful magician who played with a constant smile. Ballon d'Or winner.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Ronaldinho_Gaucho_17-06-2017.jpg"
+  },
+  {
+    "name": "Ronaldo Nazário",
+    "url": "https://en.wikipedia.org/wiki/Ronaldo_(Brazilian_footballer)",
+    "desc": "El Fenomeno. Blistering pace, genius finishing.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Ronaldo_Nazario_2019.jpg"
+  },
+  {
+    "name": "Franz Beckenbauer",
+    "url": "https://en.wikipedia.org/wiki/Franz_Beckenbauer",
+    "desc": "Der Kaiser. Invented the sweeper role and captained Germany to World Cup glory.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Franz_Beckenbauer_2015.jpg"
+  },
+  {
+    "name": "Lev Yashin",
+    "url": "https://en.wikipedia.org/wiki/Lev_Yashin",
+    "desc": "The Black Spider. Only goalkeeper to win the Ballon d'Or.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Lev_Yashin_1966.jpg"
+  },
+  {
+    "name": "Garrincha",
+    "url": "https://en.wikipedia.org/wiki/Garrincha",
+    "desc": "Dribble king. Inspired Brazil's 1958 and 1962 World Cups.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Manoel_Francisco_dos_Santos_-_Garrincha.jpg"
+  },
+  {
+    "name": "George Best",
+    "url": "https://en.wikipedia.org/wiki/George_Best",
+    "desc": "United's rockstar winger. Genius with the ball, legend off the pitch.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/74/George_Best_1976.jpg"
+  },
+  {
+    "name": "Paolo Maldini",
+    "url": "https://en.wikipedia.org/wiki/Paolo_Maldini",
+    "desc": "Mr. AC Milan. Defensive perfection for 25 years.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/38/Paolo_Maldini_%28cropped%29.jpg"
+  },
+  {
+    "name": "Roberto Baggio",
+    "url": "https://en.wikipedia.org/wiki/Roberto_Baggio",
+    "desc": "The Divine Ponytail. Dazzled Italy; heartbreak in 1994.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Roberto_Baggio_2013.jpg"
+  },
+  {
+    "name": "Andrés Iniesta",
+    "url": "https://en.wikipedia.org/wiki/Andr%C3%A9s_Iniesta",
+    "desc": "World Cup winning scorer, Barcelona legend, pass and move master.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/50/Andr%C3%A9s_Iniesta_2018.jpg"
+  },
+  {
+    "name": "Xavi",
+    "url": "https://en.wikipedia.org/wiki/Xavi",
+    "desc": "Metronome of tiki-taka and Spain's golden generation.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Xavi_Hern%C3%A1ndez_2012.jpg"
+  },
+  {
+    "name": "Michel Platini",
+    "url": "https://en.wikipedia.org/wiki/Michel_Platini",
+    "desc": "French playmaker, Euro '84 hero.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Platini_Michel.jpg"
+  },
+  {
+    "name": "Thierry Henry",
+    "url": "https://en.wikipedia.org/wiki/Thierry_Henry",
+    "desc": "Arsenal icon, whippet fast, elegant finishing.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/83/Thierry_Henry_NYRB.jpg"
+  },
+  {
+    "name": "David Beckham",
+    "url": "https://en.wikipedia.org/wiki/David_Beckham",
+    "desc": "Fashion icon and deadly crosser of the ball.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/03/David_Beckham_2014.jpg"
+  },
+  {
+    "name": "Roberto Carlos",
+    "url": "https://en.wikipedia.org/wiki/Roberto_Carlos_(footballer,_born_1973)",
+    "desc": "Legendary left back. Bullet free kicks.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Roberto_Carlos_2016.jpg"
+  },
+  {
+    "name": "Gianluigi Buffon",
+    "url": "https://en.wikipedia.org/wiki/Gianluigi_Buffon",
+    "desc": "Ironman, World Cup-winning legendary Italian goalkeeper.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Gianluigi_Buffon_2018.jpg"
+  },
+  {
+    "name": "Alfredo Di Stéfano",
+    "url": "https://en.wikipedia.org/wiki/Alfredo_Di_St%C3%A9fano",
+    "desc": "Real Madrid's symbol. Won five straight European Cups.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/49/Di_Stefano_in_1962.jpg"
+  },
+  {
+    "name": "Ferenc Puskás",
+    "url": "https://en.wikipedia.org/wiki/Ferenc_Pusk%C3%A1s",
+    "desc": "The Galloping Major. Hungarian goalscoring legend.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Ferenc_Puskas_1954_%28cropped%29.jpg"
+  },
+  {
+    "name": "Eusébio",
+    "url": "https://en.wikipedia.org/wiki/Eus%C3%A9bio",
+    "desc": "The Black Panther. Benfica and Portugal great.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/97/Eusebio_%281973%29.jpg"
+  },
+  {
+    "name": "Marco van Basten",
+    "url": "https://en.wikipedia.org/wiki/Marco_van_Basten",
+    "desc": "Dutch striker, famed for his Euro '88 volley.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/95/Marco_van_Basten_2014.jpg"
+  },
+  {
+    "name": "Ruud Gullit",
+    "url": "https://en.wikipedia.org/wiki/Ruud_Gullit",
+    "desc": "Versatile Dutch leader with iconic dreads.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Ruud_Gullit_2016.jpg"
+  },
+  {
+    "name": "Eric Cantona",
+    "url": "https://en.wikipedia.org/wiki/Eric_Cantona",
+    "desc": "The King of Old Trafford, drama guaranteed.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/93/Eric_Cantona_cannes_2014.jpg"
+  },
+  {
+    "name": "Samuel Eto'o",
+    "url": "https://en.wikipedia.org/wiki/Samuel_Eto%27o",
+    "desc": "Africa's most decorated striker, scored everywhere.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Samuel_Etoo_2011.jpg"
+  },
+  {
+    "name": "Kaká",
+    "url": "https://en.wikipedia.org/wiki/Kak%C3%A1",
+    "desc": "Ballon d'Or, Champions League, World Cup, true gent.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Kak%C3%A1_REALMADRID.jpg"
+  },
+  {
+    "name": "Andriy Shevchenko",
+    "url": "https://en.wikipedia.org/wiki/Andriy_Shevchenko",
+    "desc": "AC Milan's Ukrainian goal machine.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Shevchenko_andriy_2015.jpg"
   }
 ]
