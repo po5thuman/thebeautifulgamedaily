@@ -5,28 +5,57 @@
   <title>Football Fucking Homepage</title>
   <style>
     body { font-family: Arial, Helvetica, sans-serif; background:#eee; color:#1e2227; margin:0; padding:0;}
-    h1 { font-size:2rem; margin-top:2rem; margin-bottom:0.5rem; text-align:center; }
-    h2 { font-size:1.2rem; font-weight:normal; text-align:center; margin-top:0; margin-bottom:2rem;}
-    h4 { margin-top:2.5rem; margin-bottom:0.3rem; letter-spacing:0.04em; }
-    .category { margin: 0 auto 2.5rem auto; max-width: 620px; background: #fff; box-shadow:0 4px 16px 0 rgba(0,0,0,0.03); border-radius:8px; padding: 18px 30px;}
-    .label { color: #b17d16; font-size:0.94em; }
-    a { color: #1771d6; text-decoration:underline; }
-    .day-nav { margin: 0 auto; max-width: 650px; text-align: center; margin-bottom:1.5rem; }
+    .day-header {
+      text-align: center;
+      margin-top: 2.4rem;
+      margin-bottom: 2.8rem;
+    }
+    #date {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.2em;
+      letter-spacing: 0.02em;
+    }
+    #score-intro {
+      color: #343434;
+      font-size: 1.16rem;
+      margin-top:0.66em;
+    }
+    .score-highlight {
+      font-size: 1.22em;
+      font-weight: bold;
+      display: block;
+      margin: 0.42em 0 0.11em 0;
+    }
+    .day-nav {
+      margin: 0 auto;
+      max-width: 650px;
+      text-align: center;
+      margin-bottom:1.5rem;
+    }
     .day-link {
       display: inline-block; margin:0 16px; background: #f5f5f5; border-radius: 6px;
       padding: 6px 18px; text-decoration: none; color: #845400; font-weight:600; border: 1px solid #dec48e; font-size: 1em; transition: background 0.15s;
     }
     .day-link:hover { background: #fbe9d0; }
     .today-label { color:#bbb; font-size: 0.97em; }
+    h4 { margin-top:2.5rem; margin-bottom:0.3rem; letter-spacing:0.04em; }
+    .category { margin: 0 auto 2.5rem auto; max-width: 620px; background: #fff; box-shadow:0 4px 16px 0 rgba(0,0,0,0.03); border-radius:8px; padding: 18px 30px;}
+    .label { color: #b17d16; font-size:0.94em; }
+    a { color: #1771d6; text-decoration:underline; }
     @media (max-width: 700px) {
       .category, .day-nav { max-width: 98vw; padding: 12px 2vw; }
+      #date { font-size: 1.6rem;}
+      #score-intro { font-size: 1.04rem;}
     }
   </style>
 </head>
 <body>
   <div class="day-nav" id="dayNav"></div>
-  <h1 id="date"></h1>
-  <h2 id="fucking-day"></h2>
+  <div class="day-header">
+    <div id="date"></div>
+    <div id="score-intro"></div>
+  </div>
   <div class="category">
     <div class="label">FOOTBALL LEGEND OF THE DAY:</div>
     <div id="legend"></div>
@@ -78,7 +107,6 @@
       const idx = Math.abs(hash) % arr.length;
       return arr[idx];
     }
-
     // === Scores of the Day Section ===
     const scoresOfTheDay = [
       { date: "5/13", desc: "Aguero's dramatic title-winning goal: Manchester City 3-2 QPR (2012)" },
@@ -91,8 +119,6 @@
       { date: "5/25", desc: "Manchester United 2-1 Bayern Munich (1999 Champions League Final)" },
       { date: "6/17", desc: "Romania 3-2 Argentina (1994 World Cup)" }
     ];
-
-    // === Legend Data ===
     const footballLegends = [
       { name: "Pelé", url: "https://en.wikipedia.org/wiki/Pel%C3%A9" },
       { name: "Diego Maradona", url: "https://en.wikipedia.org/wiki/Diego_Maradona" },
@@ -145,7 +171,6 @@
       { name: "Carlos Valderrama", url: "https://en.wikipedia.org/wiki/Carlos_Valderrama" },
       { name: "Harald Schumacher", url: "https://en.wikipedia.org/wiki/Harald_Schumacher" }
     ];
-
     const stadiums = [
       { name: "Camp Nou (Barcelona)", url: "https://en.wikipedia.org/wiki/Camp_Nou" },
       { name: "Wembley Stadium (London)", url: "https://en.wikipedia.org/wiki/Wembley_Stadium" },
@@ -158,7 +183,6 @@
       { name: "Anfield (Liverpool)", url: "https://en.wikipedia.org/wiki/Anfield" },
       { name: "La Bombonera (Buenos Aires)", url: "https://en.wikipedia.org/wiki/La_Bombonera" }
     ];
-
     const triviaQuestions = [
       {
         q: "Who won the 2010 FIFA World Cup?",
@@ -201,7 +225,6 @@
         a: "Five"
       }
     ];
-
     const lifeChangingGear = [
       {
         title: "Adidas Uniforia Match Ball",
@@ -216,7 +239,6 @@
         url: "https://www.amazon.com/dp/B000P7PVW8/?tag=youraffiliatetag"
       }
     ];
-
     const stuffYouDidntKnow = [
       {
         title: "Quick-Dry Football Socks",
@@ -231,7 +253,6 @@
         url: "https://www.amazon.com/dp/B084Z9ZQXM/?tag=youraffiliatetag"
       }
     ];
-
     const fanGear = [
       {
         title: "Manchester United Home Jersey",
@@ -263,16 +284,18 @@
       }
       document.getElementById("dayNav").innerHTML = navHtml;
 
-      // --- Date for title
+      // --- Date for header
       document.getElementById("date").textContent =
         thisDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
-      // === NEW: "On today’s day..." with score ===
+      // === Clean intro with score ===
       const dayStr = (thisDate.getMonth()+1) + "/" + thisDate.getDate();
       let scoreObj = scoresOfTheDay.find(s => s.date === dayStr);
       if (!scoreObj) scoreObj = pickDailyRandom(scoresOfTheDay, 'score', thisDate);
-      document.getElementById("fucking-day").innerHTML =
-        `On today’s day, <strong>${thisDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</strong>, there was this score:<br><span style="font-size:1.13em;display:inline-block;margin-top:0.4em;"><b>${scoreObj.desc}</b></span>`;
+
+      document.getElementById("score-intro").innerHTML =
+        `On today’s day, there was this score:
+        <span class="score-highlight">${scoreObj.desc}</span>`;
 
       // Legends
       const legend = pickDailyRandom(footballLegends, 'legend', thisDate);
