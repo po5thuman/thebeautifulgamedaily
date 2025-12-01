@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Football Fucking Homepage</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -11,6 +11,7 @@
       margin: 0;
       font-family: 'Open Sans', Arial, Helvetica, sans-serif;
       color: #212e18;
+      min-height: 100vh;
     }
     .site-header {
       background: #108f46;
@@ -35,48 +36,9 @@
       display: flex;
       align-items: center;
     }
-    .hero-section {
-      background: linear-gradient(92deg, #108f46 64%, #175c2f 100%);
-      color: #fff;
-      text-align: center;
-      padding: 44px 0 36px 0;
-      box-shadow: 0 4px 32px 2px rgba(17,143,70,0.09);
-      margin-bottom: 34px;
-      position: relative;
-      border-bottom: 3px solid #f9be00;
-    }
-    .hero-date {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.3rem;
-      letter-spacing: 0.04em;
-      font-weight: 700;
-      margin-bottom: 0.28em;
-    }
-    .hero-score-intro {
-      font-size: 1.15rem;
-      opacity: 0.94;
-    }
-    .hero-score-highlight {
-      font-size: 1.32em;
-      font-weight: bold;
-      margin-top: 0.53em;
-      letter-spacing: 0.01em;
-      display: block;
-      color: #f9be00;
-      text-shadow: 1px 1px 2px #2333231a;
-    }
-    .hero-ball-bg {
-      position: absolute;
-      right: 0; top: 0;
-      opacity: .12;
-      z-index: 0;
-      width: 210px;
-      height: 210px;
-      pointer-events: none;
-    }
     .day-nav {
-      margin: 1.7rem auto 0.9rem auto;
-      max-width: 800px;
+      margin: 1.8rem auto 1.1rem auto;
+      max-width: 900px;
       text-align: center;
     }
     .day-link {
@@ -86,39 +48,99 @@
     .day-link:hover { background: #aed7bc; }
     .today-label { color:#bbb; font-size: 0.97em; }
 
-    /* Two top cards */
-    .main-grid {
-      max-width: 1070px;
-      margin: 0 auto 2.2rem auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas: "legend stadium" "trivia trivia" "gear stuff fangear";
-      gap: 2.2rem;
+    /* HERO section */
+    .hero-section {
+      background: linear-gradient(92deg, #149647 85%, #198a47 100%);
+      color: #fff;
+      text-align: center;
+      padding: 44px 0 36px 0;
+      margin-bottom: 40px;
+      border-bottom: 3px solid #f9be00;
     }
+    .hero-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.15em;
+    }
+    .hero-day {
+      font-size: 1.2rem;
+      margin-bottom: 0.20em;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+    }
+    .hero-score-intro {
+      font-size: 1.09rem;
+      margin-bottom: .08em;
+      opacity: 0.98;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .hero-score-highlight {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-top: 0.32em;
+      color: #f9be00;
+      letter-spacing: 0.01em;
+      font-family: 'Montserrat', sans-serif;
+      display: block;
+    }
+
+    /* Main content layout */
+    .top-row {
+      display: flex;
+      gap: 2.2rem;
+      max-width: 1200px;
+      margin: 0 auto 0 auto;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .top-row .card {
+      flex: 1 1 0px;
+      min-width: 260px;
+    }
+    .mid-row {
+      max-width: 1200px;
+      margin: 2.2rem auto 0 auto;
+      padding: 0;
+      display: block;
+    }
+    .bottom-row {
+      display: flex;
+      gap: 2.2rem;
+      max-width: 1200px;
+      margin: 2.2rem auto 2.5rem auto;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .bottom-row .card {
+      flex: 1 1 0px;
+      min-width: 260px;
+    }
+
     .card {
       background: #fff;
       border-radius: 12px;
-      box-shadow: 0 3px 16px 0 rgba(40,70,40,0.12);
-      padding: 2rem 2.2rem 2.2rem 2.2rem;
+      box-shadow: 0 3px 16px 0 rgba(40,70,40,0.13);
+      padding: 2.1rem 2.2rem 2.2rem 2.2rem;
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      min-width: 0; /* fix Firefox flex bug */
+      min-width: 0;
     }
     .card-label {
       font-family: 'Montserrat', sans-serif;
       background: #108f46;
       color: #fff;
-      font-size: 0.95em;
+      font-size: 0.92em;
       font-weight: bold;
       letter-spacing: .08em;
       text-transform: uppercase;
       padding: 5px 15px;
       border-radius: 3.4px;
       position: absolute;
-      left: 1.5rem; top: 1.1rem;
-      box-shadow: 0 2px 8px #108f4640;
+      left: 1.2rem; top: 1.1rem;
       z-index: 2;
     }
     .card-label.gold {
@@ -127,18 +149,18 @@
     }
     .card-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.46em;
+      font-size: 1.3em;
       font-weight: 700;
       color: #1B5E20;
-      margin: 2.1em 0 0.08em 0; /* space for label */
+      margin: 2.1em 0 0.08em 0;
       letter-spacing: -0.01em;
     }
     .card-desc {
       color: #2e422a;
       font-family: 'Open Sans', sans-serif;
-      font-size: 1.08em;
+      font-size: 1.09em;
       margin: 0.4em 0 1.12em 0;
-      line-height: 1.54;
+      line-height: 1.5;
     }
     .card-link, .card-info, .card-extra {
       color: #108f46;
@@ -170,10 +192,10 @@
       color: #fff;
       border: none;
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.08em;
+      font-size: 1.03em;
       padding: 9px 21px;
       border-radius: 7px;
-      margin-top: 0.8em;
+      margin-top: 1.05em;
       font-weight: 600;
       cursor: pointer;
       box-shadow: 0 2px 6px #108f4630;
@@ -183,38 +205,20 @@
     .trivia-answer {
       display:none;
       margin-top: 1.1em;
-      font-size: 1.06em;
+      font-size: 1.09em;
       color: #f9be00;
       font-weight: bold;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
     }
-    /* Card grid areas */
-    .card-legend { grid-area: legend; }
-    .card-stadium { grid-area: stadium; }
-    .card-trivia { grid-area: trivia; }
-    .card-gear { grid-area: gear; }
-    .card-stuff { grid-area: stuff; }
-    .card-fangear { grid-area: fangear; }
-
-    @media (max-width: 1080px) {
-      .main-grid { max-width:96vw; }
-      .card { padding: 1.23rem 1em 1.23rem 1em;}
-    }
-    @media (max-width: 900px) {
-      .main-grid {
-        grid-template-columns: 1fr;
-        grid-template-areas: "legend" "stadium" "trivia" "gear" "stuff" "fangear";
-        gap: 1.3rem;
-      }
-      .site-header { padding: 15px 12px;}
-      .hero-section { padding: 14vw 0 11vw 0;}
+    @media (max-width: 930px) {
+      .top-row, .bottom-row { flex-direction: column; gap: 1.3rem;}
+      .mid-row { max-width:95vw;}
+      .card { padding: 1.3rem 1em 1.4rem 1em;}
     }
     @media (max-width: 700px) {
-      .main-grid { max-width:98vw;}
-      .hero-score-highlight { font-size:1.03em;}
-      .hero-date { font-size:1.33rem; }
-      .site-name { font-size: 1.15rem;}
-      .card-title { font-size: 1.1em;}
+      .card-title { font-size: 1.03em;}
+      .hero-date { font-size:1.4rem;}
+      .hero-section { padding: 5vw 0 6vw 0;}
     }
   </style>
 </head>
@@ -225,64 +229,58 @@
       <svg fill="#fff" width="32" height="32" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#fff"/><circle cx="24" cy="24" r="18" fill="none" stroke="#108f46" stroke-width="2"/><circle cx="24" cy="24" r="7" fill="#108f46" stroke="#175c2f" stroke-width="2"/><path d="M24 17 l-5 -7 M24 17 l5 -7 M24 31 l-5 7 M24 31 l5 7 M17 24 l-7 -5 M17 24 l-7 5 M31 24 l7 -5 M31 24 l7 5" stroke="#108f46" stroke-width="2" fill="none"/></svg>
     </div>
   </header>
-
   <div class="day-nav" id="dayNav"></div>
-
   <section class="hero-section">
     <div class="hero-date" id="date"></div>
-    <div class="hero-score-intro" id="score-intro"></div>
-    <svg class="hero-ball-bg" viewBox="0 0 80 80">
-      <circle cx="40" cy="40" r="38" stroke="#fff" stroke-width="4" fill="none"/>
-      <circle cx="40" cy="40" r="30" stroke="#f9be00" stroke-width="1.5" fill="none"/>
-      <circle cx="40" cy="40" r="16" stroke="#fff" stroke-width="1.5" fill="none"/>
-    </svg>
+    <div class="hero-day" id="day"></div>
+    <div class="hero-score-intro">On today’s day,</div>
+    <div class="hero-score-highlight" id="score"></div>
   </section>
-
-  <main class="main-grid">
-    <div class="card card-legend">
+  <div class="top-row">
+    <div class="card">
       <div class="card-label">Legend of the Day</div>
       <div class="card-title" id="legend-title"></div>
       <div class="card-desc" id="legend-desc"></div>
       <a id="legend-link" class="card-link learnmore" target="_blank">Learn More</a>
     </div>
-    <div class="card card-stadium">
+    <div class="card">
       <div class="card-label gold">Stadium of the Day</div>
       <div class="card-title" id="stadium-title"></div>
       <div class="card-desc" id="stadium-desc"></div>
       <a id="stadium-link" class="card-link" target="_blank">Learn More</a>
       <div class="card-info" id="stadium-info"></div>
     </div>
-
-    <!-- Span 2 columns on desktop -->
-    <div class="card card-trivia">
+  </div>
+  <div class="mid-row">
+    <div class="card">
       <div class="card-label">Trivia</div>
       <div class="card-title" id="trivia-title"></div>
       <button class="trivia-btn" id="showTrivia">Show Answer</button>
       <div class="trivia-answer" id="triviaA"></div>
     </div>
-
-    <div class="card card-gear">
+  </div>
+  <div class="bottom-row">
+    <div class="card">
       <div class="card-label gold">Life-Changing Gear</div>
       <div class="card-title" id="gear-title"></div>
       <div class="card-desc" id="gear-desc"></div>
       <a id="gear-link" class="card-link" target="_blank">more &gt;&gt;</a>
     </div>
-    <div class="card card-stuff">
+    <div class="card">
       <div class="card-label">You Didn't Know You Need</div>
       <div class="card-title" id="stuff-title"></div>
       <div class="card-desc" id="stuff-desc"></div>
       <a id="stuff-link" class="card-link" target="_blank">more &gt;&gt;</a>
     </div>
-    <div class="card card-fangear">
+    <div class="card">
       <div class="card-label gold">Fan Gear</div>
       <div class="card-title" id="fan-title"></div>
       <div class="card-desc" id="fan-desc"></div>
       <a id="fan-link" class="card-link" target="_blank">more &gt;&gt;</a>
     </div>
-  </main>
-
+  </div>
   <script>
-    // Same logic as before...
+    // Helper functions
     function getDayOffset() {
       const params = new URLSearchParams(location.search);
       const d = parseInt(params.get('d'), 10);
@@ -308,7 +306,7 @@
       return arr[idx];
     }
 
-    // --- Data Arrays (keep or expand as needed, minimal/sample content below) ---
+    // --- Your DATA ---
     const scoresOfTheDay = [
       { date: "5/13", desc: "Aguero's dramatic title-winning goal: Manchester City 3-2 QPR (2012)" },
       { date: "7/8", desc: "Germany 7-1 Brazil (2014 World Cup Semi-final)" },
@@ -368,78 +366,31 @@
       }
     ];
     const triviaQuestions = [
-      {
-        q: "Who won the 2010 FIFA World Cup?",
-        a: "Spain"
-      },
-      {
-        q: "Which player is known as 'The Divine Ponytail'?",
-        a: "Roberto Baggio"
-      },
-      {
-        q: "Who scored the 'Hand of God' goal?",
-        a: "Diego Maradona"
-      },
-      {
-        q: "Which club has won the most UEFA Champions League titles?",
-        a: "Real Madrid"
-      }
+      { q: "Who won the 2010 FIFA World Cup?", a: "Spain" },
+      { q: "Which player is known as 'The Divine Ponytail'?", a: "Roberto Baggio" },
+      { q: "Who scored the 'Hand of God' goal?", a: "Diego Maradona" },
+      { q: "Which club has won the most UEFA Champions League titles?", a: "Real Madrid" }
     ];
     const lifeChangingGear = [
-      {
-        title: "Adidas Uniforia Match Ball",
-        desc: "Official match ball for international play. Fly like a pro.",
-        url: "https://www.amazon.com/dp/B07ZQPYJ5Q/?tag=youraffiliatetag"
-      },
-      {
-        title: "Nike Mercurial Superfly 9",
-        desc: "Elite speed boots for dream goals—worn by international stars.",
-        url: "https://www.amazon.com/dp/B0B3TZD66X/?tag=youraffiliatetag"
-      },
-      {
-        title: "SKLZ Agility Ladder",
-        desc: "Essential for lightning footwork and professional drills.",
-        url: "https://www.amazon.com/dp/B000P7PVW8/?tag=youraffiliatetag"
-      }
+      { title: "Adidas Uniforia Match Ball", desc: "Official match ball for international play. Fly like a pro.", url: "https://www.amazon.com/dp/B07ZQPYJ5Q/?tag=youraffiliatetag" },
+      { title: "Nike Mercurial Superfly 9", desc: "Elite speed boots for dream goals—worn by international stars.", url: "https://www.amazon.com/dp/B0B3TZD66X/?tag=youraffiliatetag" },
+      { title: "SKLZ Agility Ladder", desc: "Essential for lightning footwork and professional drills.", url: "https://www.amazon.com/dp/B000P7PVW8/?tag=youraffiliatetag" }
     ];
     const stuffYouDidntKnow = [
-      {
-        title: "Quick-Dry Football Socks",
-        desc: "Zero blisters, max comfort. Never complain about your feet again.",
-        url: "https://www.amazon.com/dp/B013Q158UM/?tag=youraffiliatetag"
-      },
-      {
-        title: "Football Ice Cube Tray",
-        desc: "Celebrate every match with ball-shaped ice. The real MVP of parties.",
-        url: "https://www.amazon.com/dp/B084Z9ZQXM/?tag=youraffiliatetag"
-      },
-      {
-        title: "Portable Pop-Up Soccer Goal",
-        desc: "Score anywhere. Garden, beach, street—it's always game time.",
-        url: "https://www.amazon.com/dp/B00Z8UB6IW/?tag=youraffiliatetag"
-      }
+      { title: "Quick-Dry Football Socks", desc: "Zero blisters, max comfort. Never complain about your feet again.", url: "https://www.amazon.com/dp/B013Q158UM/?tag=youraffiliatetag" },
+      { title: "Football Ice Cube Tray", desc: "Celebrate every match with ball-shaped ice. The real MVP of parties.", url: "https://www.amazon.com/dp/B084Z9ZQXM/?tag=youraffiliatetag" },
+      { title: "Portable Pop-Up Soccer Goal", desc: "Score anywhere. Garden, beach, street—it's always game time.", url: "https://www.amazon.com/dp/B00Z8UB6IW/?tag=youraffiliatetag" }
     ];
     const fanGear = [
-      {
-        title: "Manchester United Home Jersey",
-        desc: "Wear glory. Official United kit—legend for any fan.",
-        url: "https://www.amazon.com/dp/B0C5G1X8FP/?tag=youraffiliatetag"
-      },
-      {
-        title: "Liverpool FC Scarf",
-        desc: "Walk on with pride. Classic scarf for matchday chills.",
-        url: "https://www.amazon.com/dp/B01LYLC61E/?tag=youraffiliatetag"
-      },
-      {
-        title: "FC Barcelona Cap",
-        desc: "Barça to the bone. Represent on sunny days.",
-        url: "https://www.amazon.com/dp/B01GZZ8SXE/?tag=youraffiliatetag"
-      }
+      { title: "Manchester United Home Jersey", desc: "Wear glory. Official United kit—legend for any fan.", url: "https://www.amazon.com/dp/B0C5G1X8FP/?tag=youraffiliatetag" },
+      { title: "Liverpool FC Scarf", desc: "Walk on with pride. Classic scarf for matchday chills.", url: "https://www.amazon.com/dp/B01LYLC61E/?tag=youraffiliatetag" },
+      { title: "FC Barcelona Cap", desc: "Barça to the bone. Represent on sunny days.", url: "https://www.amazon.com/dp/B01GZZ8SXE/?tag=youraffiliatetag" }
     ];
 
     document.addEventListener("DOMContentLoaded", function() {
       const offset = getDayOffset();
       const thisDate = getDateForOffset(offset);
+      const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
       // Navigation
       let navHtml = '';
@@ -453,32 +404,28 @@
       }
       document.getElementById("dayNav").innerHTML = navHtml;
 
-      // Hero date & score
+      // Hero
       document.getElementById("date").textContent =
         thisDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      document.getElementById("day").textContent = `It’s ${days[thisDate.getDay()]}.`;
       const dayStr = (thisDate.getMonth()+1) + "/" + thisDate.getDate();
       let scoreObj = scoresOfTheDay.find(s => s.date === dayStr);
       if (!scoreObj) scoreObj = pickDailyRandom(scoresOfTheDay, 'score', thisDate);
-      document.getElementById("score-intro").innerHTML =
-        `On today’s day,<span class="hero-score-highlight">${scoreObj.desc}</span>`;
+      document.getElementById("score").textContent = scoreObj.desc;
 
       // Legend
       const legend = pickDailyRandom(footballLegends, 'legend', thisDate);
       document.getElementById('legend-title').textContent = legend ? legend.name : "(add more legends!)";
       document.getElementById('legend-desc').textContent = legend ? legend.desc : "";
       document.getElementById('legend-link').style.display = legend && legend.url ? "inline-block" : "none";
-      if (legend && legend.url) {
-        document.getElementById('legend-link').href = legend.url;
-      }
+      if (legend && legend.url) document.getElementById('legend-link').href = legend.url;
 
       // Stadium
       const stadium = pickDailyRandom(stadiums, 'stadium', thisDate);
       document.getElementById('stadium-title').textContent = stadium ? stadium.name : "(add more stadiums!)";
       document.getElementById('stadium-desc').textContent = stadium ? stadium.desc : "";
       document.getElementById('stadium-link').style.display = stadium && stadium.url ? "inline-block" : "none";
-      if (stadium && stadium.url) {
-        document.getElementById('stadium-link').href = stadium.url;
-      }
+      if (stadium && stadium.url) document.getElementById('stadium-link').href = stadium.url;
       document.getElementById('stadium-info').textContent = stadium ? stadium.info : "";
 
       // Trivia
@@ -497,27 +444,21 @@
       document.getElementById('gear-title').textContent = gear ? gear.title : "(add more gear!)";
       document.getElementById('gear-desc').textContent = gear ? gear.desc : "";
       document.getElementById('gear-link').style.display = gear && gear.url ? "inline-block" : "none";
-      if (gear && gear.url) {
-        document.getElementById('gear-link').href = gear.url;
-      }
+      if (gear && gear.url) document.getElementById('gear-link').href = gear.url;
 
       // Stuff You Didn't Know
       const stuff = pickDailyRandom(stuffYouDidntKnow, 'stuff', thisDate);
       document.getElementById('stuff-title').textContent = stuff ? stuff.title : "(add more stuff!)";
       document.getElementById('stuff-desc').textContent = stuff ? stuff.desc : "";
       document.getElementById('stuff-link').style.display = stuff && stuff.url ? "inline-block" : "none";
-      if (stuff && stuff.url) {
-        document.getElementById('stuff-link').href = stuff.url;
-      }
+      if (stuff && stuff.url) document.getElementById('stuff-link').href = stuff.url;
 
       // Fan Gear
       const fan = pickDailyRandom(fanGear, 'fan', thisDate);
       document.getElementById('fan-title').textContent = fan ? fan.title : "(add more fan gear!)";
       document.getElementById('fan-desc').textContent = fan ? fan.desc : "";
       document.getElementById('fan-link').style.display = fan && fan.url ? "inline-block" : "none";
-      if (fan && fan.url) {
-        document.getElementById('fan-link').href = fan.url;
-      }
+      if (fan && fan.url) document.getElementById('fan-link').href = fan.url;
     });
   </script>
 </body>
