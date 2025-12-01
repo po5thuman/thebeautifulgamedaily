@@ -49,7 +49,7 @@
       font-size: 2.5rem;
       font-weight: 700;
       letter-spacing: 0.04em;
-      margin-bottom: 0.15em;
+      margin-bottom: 0.12em;
     }
     .hero-day {
       font-size: 1.2rem;
@@ -58,7 +58,7 @@
       font-weight: 500;
     }
     .hero-countdown {
-      margin-top: 1.6em;
+      margin-top: 0.25em;
       font-size: 1.28em;
       font-family: 'Montserrat', sans-serif;
       color: #f9be00;
@@ -135,7 +135,6 @@
     .card-link, .card-info, .card-extra {
       color: #108f46;
       font-weight: 600;
-      text-decoration: underline;
       cursor: pointer;
       transition: color .18s;
     }
@@ -148,8 +147,27 @@
       color: #175c2f;
       border: none;
       padding: 0;
+      text-decoration: underline;
     }
     .card-link.learnmore:hover { color: #f9be00; }
+    .buy-btn {
+      margin-top: 1.5em;
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      background: #108f46;
+      color: #fff;
+      font-size: 1.08em;
+      padding: 11px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      border: none;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 2px 8px #14964722;
+      transition: background .18s,color .18s;
+      letter-spacing: 0.04em;
+    }
+    .buy-btn:hover, .buy-btn:focus { background: #175c2f; color: #fff;}
     .card-info {
       color: #2f8309;
       font-size: 1.01em;
@@ -253,7 +271,6 @@
       <div class="card-title" id="stadium-title"></div>
       <div class="card-desc" id="stadium-desc"></div>
       <a id="stadium-link" class="card-link" target="_blank">Learn More</a>
-      <div class="card-info" id="stadium-info"></div>
     </div>
   </div>
   <div class="mid-row">
@@ -269,19 +286,19 @@
       <div class="card-label gold">Life-Changing Gear</div>
       <div class="card-title" id="gear-title"></div>
       <div class="card-desc" id="gear-desc"></div>
-      <a id="gear-link" class="card-link" target="_blank">Buy on Amazon &gt;&gt;</a>
+      <a id="gear-link" class="buy-btn" target="_blank">Buy Now</a>
     </div>
     <div class="card">
       <div class="card-label">You Didn't Know You Need</div>
       <div class="card-title" id="stuff-title"></div>
       <div class="card-desc" id="stuff-desc"></div>
-      <a id="stuff-link" class="card-link" target="_blank">Buy on Amazon &gt;&gt;</a>
+      <a id="stuff-link" class="buy-btn" target="_blank">Buy Now</a>
     </div>
     <div class="card">
       <div class="card-label gold">Fan Gear</div>
       <div class="card-title" id="fan-title"></div>
       <div class="card-desc" id="fan-desc"></div>
-      <a id="fan-link" class="card-link" target="_blank">Buy on Amazon &gt;&gt;</a>
+      <a id="fan-link" class="buy-btn" target="_blank">Buy Now</a>
     </div>
   </div>
   <div class="bottom-nav" id="dayNav"></div>
@@ -316,9 +333,8 @@
     }
     function getCountdown(targetDate, todayDate) {
       const diffMs = targetDate.getTime() - todayDate.getTime();
-      return Math.ceil(diffMs / (1000*60*60*24)); // in days
+      return Math.ceil(diffMs / (1000*60*60*24));
     }
-
     async function startSite() {
       const offset = getDayOffset();
       const thisDate = getDateForOffset(offset);
@@ -359,7 +375,7 @@
       if (stadium && stadium.url) document.getElementById('stadium-link').href = stadium.url;
       document.getElementById('stadium-image').src = stadium && stadium.image ? stadium.image : "";
       document.getElementById('stadium-image').style.display = stadium && stadium.image ? "block" : "none";
-      document.getElementById('stadium-info').textContent = stadium ? stadium.info : "";
+      // removed capacity/info
 
       // Trivia card
       const triviaObj = pickDailyRandom(trivia, 'trivia', thisDate);
@@ -372,7 +388,7 @@
         document.getElementById('showTrivia').disabled = true;
       };
 
-      // Bottom gear/affiliate cards (fetch from links.json)
+      // Bottom affiliate cards
       const gearObj = pickDailyRandom(links.gear || [], 'gear', thisDate);
       document.getElementById('gear-title').textContent = gearObj ? gearObj.title : "(add more gear!)";
       document.getElementById('gear-desc').textContent = gearObj ? gearObj.desc : "";
