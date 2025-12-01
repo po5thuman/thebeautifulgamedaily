@@ -47,8 +47,6 @@
     }
     .day-link:hover { background: #aed7bc; }
     .today-label { color:#bbb; font-size: 0.97em; }
-
-    /* HERO section */
     .hero-section {
       background: linear-gradient(92deg, #149647 85%, #198a47 100%);
       color: #fff;
@@ -85,8 +83,6 @@
       font-family: 'Montserrat', sans-serif;
       display: block;
     }
-
-    /* Main content layout */
     .top-row {
       display: flex;
       gap: 2.2rem;
@@ -117,7 +113,6 @@
       flex: 1 1 0px;
       min-width: 260px;
     }
-
     .card {
       background: #fff;
       border-radius: 12px;
@@ -187,6 +182,22 @@
       margin-top: 0.3em;
       letter-spacing: 0.01em;
     }
+    .card-image-wrap {
+      width: 100%;
+      margin-top: 2.2em;
+      margin-bottom: 1.2em;
+      display: flex;
+      justify-content: center;
+    }
+    .card-image {
+      width: 92%;
+      max-width: 320px;
+      height: auto;
+      border-radius: 9px;
+      object-fit: cover;
+      box-shadow: 0 1px 10px 0 rgba(40,70,40,0.13);
+      background: #f0f4ea;
+    }
     .trivia-btn {
       background: #108f46;
       color: #fff;
@@ -239,12 +250,14 @@
   <div class="top-row">
     <div class="card">
       <div class="card-label">Legend of the Day</div>
+      <div class="card-image-wrap"><img id="legend-image" class="card-image" alt="Legend Image"></div>
       <div class="card-title" id="legend-title"></div>
       <div class="card-desc" id="legend-desc"></div>
       <a id="legend-link" class="card-link learnmore" target="_blank">Learn More</a>
     </div>
     <div class="card">
       <div class="card-label gold">Stadium of the Day</div>
+      <div class="card-image-wrap"><img id="stadium-image" class="card-image" alt="Stadium Image"></div>
       <div class="card-title" id="stadium-title"></div>
       <div class="card-desc" id="stadium-desc"></div>
       <a id="stadium-link" class="card-link" target="_blank">Learn More</a>
@@ -280,7 +293,6 @@
     </div>
   </div>
   <script>
-    // Helper functions
     function getDayOffset() {
       const params = new URLSearchParams(location.search);
       const d = parseInt(params.get('d'), 10);
@@ -305,8 +317,7 @@
       const idx = Math.abs(hash) % arr.length;
       return arr[idx];
     }
-
-    // --- Your DATA ---
+    // --- Added image data!
     const scoresOfTheDay = [
       { date: "5/13", desc: "Aguero's dramatic title-winning goal: Manchester City 3-2 QPR (2012)" },
       { date: "7/8", desc: "Germany 7-1 Brazil (2014 World Cup Semi-final)" },
@@ -323,26 +334,31 @@
         name: "Pelé",
         url: "https://en.wikipedia.org/wiki/Pel%C3%A9",
         desc: "The king of football. Three World Cups and more than 1000 goals.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/9/97/Pel%C3%A9_1960.jpg"
       },
       {
         name: "Diego Maradona",
         url: "https://en.wikipedia.org/wiki/Diego_Maradona",
         desc: "Hand of God, Goal of the Century. Pure magic and madness.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/9/97/Diego_maradona_1986.jpg"
       },
       {
         name: "Lionel Messi",
         url: "https://en.wikipedia.org/wiki/Lionel_Messi",
         desc: "Smallest GOAT, master magician, World and Ballon d'Or winner.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/8/87/Lionel_Messi_20180626.jpg"
       },
       {
         name: "Cristiano Ronaldo",
         url: "https://en.wikipedia.org/wiki/Cristiano_Ronaldo",
         desc: "Machine of goals, athletic beast, winner everywhere.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg"
       },
       {
         name: "Johan Cruyff",
         url: "https://en.wikipedia.org/wiki/Johan_Cruyff",
         desc: "Total Football father, brilliant in style and mind.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Johan_Cruyff_1974c.jpg"
       }
     ];
     const stadiums = [
@@ -350,19 +366,22 @@
         name: "Camp Nou (Barcelona)",
         url: "https://en.wikipedia.org/wiki/Camp_Nou",
         desc: "Europe's largest stadium, home of epic nights in football history.",
-        info: "Capacity 99,354"
+        info: "Capacity 99,354",
+        image: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Camp_Nou_aerial.jpg"
       },
       {
         name: "Wembley Stadium (London)",
         url: "https://en.wikipedia.org/wiki/Wembley_Stadium",
         desc: "The venue of finals, dreams, and heartbreak in England.",
-        info: "Capacity 90,000"
+        info: "Capacity 90,000",
+        image: "https://upload.wikimedia.org/wikipedia/commons/9/91/Wembleystadium-2007.jpg"
       },
       {
         name: "Maracanã (Rio de Janeiro)",
         url: "https://en.wikipedia.org/wiki/Maracan%C3%A3_Stadium",
         desc: "The soul of Brazilian football, host of unforgettable World Cup moments.",
-        info: "Capacity 78,838"
+        info: "Capacity 78,838",
+        image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Maracan%C3%A3_Stadium_in_Rio_de_Janeiro%2C_Brazil.jpg"
       }
     ];
     const triviaQuestions = [
@@ -404,7 +423,7 @@
       }
       document.getElementById("dayNav").innerHTML = navHtml;
 
-      // Hero
+      // Hero Section
       document.getElementById("date").textContent =
         thisDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
       document.getElementById("day").textContent = `It’s ${days[thisDate.getDay()]}.`;
@@ -419,6 +438,8 @@
       document.getElementById('legend-desc').textContent = legend ? legend.desc : "";
       document.getElementById('legend-link').style.display = legend && legend.url ? "inline-block" : "none";
       if (legend && legend.url) document.getElementById('legend-link').href = legend.url;
+      document.getElementById('legend-image').src = legend && legend.image ? legend.image : "";
+      document.getElementById('legend-image').style.display = legend && legend.image ? "block" : "none";
 
       // Stadium
       const stadium = pickDailyRandom(stadiums, 'stadium', thisDate);
@@ -426,6 +447,8 @@
       document.getElementById('stadium-desc').textContent = stadium ? stadium.desc : "";
       document.getElementById('stadium-link').style.display = stadium && stadium.url ? "inline-block" : "none";
       if (stadium && stadium.url) document.getElementById('stadium-link').href = stadium.url;
+      document.getElementById('stadium-image').src = stadium && stadium.image ? stadium.image : "";
+      document.getElementById('stadium-image').style.display = stadium && stadium.image ? "block" : "none";
       document.getElementById('stadium-info').textContent = stadium ? stadium.info : "";
 
       // Trivia
