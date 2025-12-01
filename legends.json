@@ -1,1 +1,14 @@
-
+[
+  {
+    "name": "Pelé",
+    "url": "https://en.wikipedia.org/wiki/Pel%C3%A9",
+    "desc": "The king of football. Three World Cups and more than 1000 goals.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/97/Pel%C3%A9_1960.jpg"
+  },
+  {
+    "name": "Diego Maradona",
+    "url": "https://en.wikipedia.org/wiki/Diego_Maradona",
+    "desc": "Hand of God, Goal of the Century. Pure magic and madness.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/97/Diego_maradona_1986.jpg"
+  }
+]
