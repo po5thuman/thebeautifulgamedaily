@@ -349,7 +349,7 @@
         thisDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
       document.getElementById("day").textContent = `It’s ${days[thisDate.getDay()]}`;
       document.getElementById("countdown").textContent =
-        `World Cup Kick Off in ${wcDays} Days`;
+        `World Cup Kicks Off in ${wcDays} Days`;
 
       // Fetch JSON data from root directory
       const [legends, stadiums, trivia, links] = await Promise.all([
